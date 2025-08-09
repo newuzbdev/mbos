@@ -1,0 +1,70 @@
+import React from 'react';
+import {Button as MovingButton} from '@/components/ui/moving-border';
+import Image from 'next/image';
+import {SparklesCore} from './ui/sparkles';
+import {getDictionary} from '@/get-dictionary';
+
+export default function About({t}: {t: Awaited<ReturnType<typeof getDictionary>>}) {
+    return (
+        <section id='about' className='flex flex-col items-center gap-10'>
+            <div className='mbos-button capitalize'>{t.homeButton2} {t.abouth1span}</div>
+            <h1 className=' text-3xl md:text-5xl font-bold text-center md:leading-18 uppercase leading-10'>
+                {t.homeButton2} <span className='text-mbosLinear'>{t.abouth1span}</span>
+            </h1>
+            <div className='w-screen overflow-x-clip flex flex-col items-center relative'>
+                <div className='w-full md:w-[40rem] h-20 relative md:-mt-14  -mt-12'>
+                    <div className='absolute inset-x-18 md:inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm' />
+                    <div className='absolute inset-x-18 md:inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4' />
+                    <div className='absolute inset-x-18 md:inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm' />
+                    <div className='absolute inset-x-18 md:inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4' />
+                    <SparklesCore background='transparent' minSize={0.4} maxSize={1} particleDensity={1200} className='w-full h-full' particleColor='#FFFFFF' />
+                    <div className='absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]'></div>
+                </div>
+            </div>
+            <MovingButton borderRadius='24px' containerClassName='w-[calc(100vw-10px)] md:w-[calc(100vw-200px)] h-auto md:h-full p-1 mx-1' className='bg-black' borderClassName='size-60 '>
+                <div className=' grid-cols-2 grid-rows-6 grid md:grid-cols-4 md:grid-rows-4 gap-4 size-full'>
+                    <Image src='/backgroundFooter.png' alt='background' width={100} height={100} className='absolute w-full h-full bg-black object-cover blur-2xl -z-10' />
+                    <div className='col-span-2 row-span-2 md:row-span-3 rounded-tl-3xl rounded-tr-3xl md:rounded-tr-none border border-gray-100/50 flex flex-col items-center justify-start md:pt-30 gap-2 p-5 md:px-20'>
+                        <h2 className='font-bold text-[34px] md:text-5xl'>MBOS</h2>
+                        <p className='font-semibold text-[18px]/[30px] text-center md:text-2xl/[32px]'>Multi Branch Online Service</p>
+                        <p className='font-semibold text-[18px]/[30px] text-center md:text-2xl/[32px]'>{t.aboutp}</p>
+                    </div>
+                    <div className='col-span-2 row-span-2 md:row-span-3 flex flex-col gap-4 rounded-tr-3xl'>
+                        <div className='flex items-center gap-4 justify-center'>
+                            <div className='relative md:h-[255px] h-[150px] w-full border border-gray-100/50'>
+                                <Image src='/room1.png' alt='building' fill className='object-cover' />
+                            </div>
+                            <div className='relative md:h-[255px] h-[150px] w-full border border-gray-100/50'>
+                                <Image src='/room3.png' alt='building' fill className='object-cover' />
+                            </div>
+                        </div>
+                        <div className='flex items-center gap-4 justify-center'>
+                            <div className='relative md:h-[255px] h-[150px] w-full border border-gray-100/50'>
+                                <Image src='/room3.png' alt='building' fill className='object-cover' />
+                            </div>
+                            <div className='relative md:h-[255px] h-[150px] w-full border border-gray-100/50'>
+                                <Image src='/room5.png' alt='building' fill className='object-cover' />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='sm:rounded-bl-3xl border border-gray-100/50'>
+                        <p className='font-bold text-4xl md:text-6xl my-8 text-center w-full'>15.4K+</p>
+                        <p className='text-sm font-light text-start pl-2 md:px-5 w-full'>{t.aboutp2}</p>
+                    </div>
+                    <div className='border border-gray-100/50'>
+                        <p className='font-bold text-4xl md:text-6xl my-8 text-center w-full'>300+</p>
+                        <p className='text-sm font-light text-start pl-2 md:px-5 w-full'>{t.aboutp3}</p>
+                    </div>
+                    <div className='border rounded-bl-3xl md:rounded-bl-none border-gray-100/50'>
+                        <p className='font-bold text-4xl md:text-6xl my-8 text-center w-full'>10 +</p>
+                        <p className='text-sm font-light text-start pl-2 md:px-5 w-full'>{t.year}</p>
+                    </div>
+                    <div className='rounded-br-3xl border border-gray-100/50'>
+                        <p className='font-bold text-4xl md:text-6xl my-8 text-center w-full'>20 +</p>
+                        <p className='text-sm font-light text-start pl-2 md:px-5 w-full'>{t.aboutp5 }</p>
+                    </div>
+                </div>
+            </MovingButton>
+        </section>
+    );
+}
