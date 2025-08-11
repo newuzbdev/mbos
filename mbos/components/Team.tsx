@@ -66,6 +66,10 @@ export default function Team({ t }: { t: Awaited<ReturnType<typeof getDictionary
     { name: 'Otanazarov Otabek', role: 'Backend dasturchi', image: '/team2back.jpg' },
     { name: 'Jumaniyazov Alibek', role: 'Frontend dasturchi', image: '/team2fr.jpg' },
     { name: 'Sultonov Zerifboy', role: 'Backend dasturchi', image: '/team2bk.jpg' },
+    { name: 'Shohida', role: "Moliya bo'limi boshlig'i", image: '/team1moliya.jpg' },
+    { name: 'Dilshod', role: 'B2G menejer', image: '/team1dilshod.jpg' },
+    { name: 'Azizbek', role: 'B2B menejer', image: '/team1aziz.jpg' },
+    { name: 'Kamron', role: 'Backend dasturchi', image: '/team2designer4.jpg' },
   ];
 
   // Dialog state
