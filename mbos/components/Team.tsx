@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import { getDictionary } from '@/get-dictionary';
 import { SparklesCore } from './ui/sparkles';
-import { InfiniteMovingCards2 } from './InfiniteMovingCards2';
 import Image from 'next/image';
+import teamRoles from '@/data/team-roles.json';
+import { cn } from '@/lib/utils';
 
 function TeamImageDialog({
   open,
@@ -54,23 +55,40 @@ function TeamImageDialog({
   );
 }
 
-export default function Team({ t }: { t: Awaited<ReturnType<typeof getDictionary>> }) {
+export default function Team({ 
+  t, 
+  lang = 'uz' 
+}: { 
+  t: Awaited<ReturnType<typeof getDictionary>>;
+  lang?: string;
+}) {
   const teamMembers = [
-    { name: 'Matyaqubov Akrom', role: 'Texnik', image: '/texnik.jpg' },
-    { name: 'Kurbaniyazov Quvandik', role: 'SEO', image: '/team1.jpg' },
-    { name: 'Yusupov Mansur', role: 'Raxbar', image: '/team1boss.png' },
-    { name: 'Ochilov Jaxongirmirzo', role: 'Frontend dasturchi', image: '/team1frme.jpg' },
-    { name: 'Madrimov Xudoshukur', role: 'Team Lead', image: '/team1fr.jpg' },
-    { name: 'Xaitboev Jamoladdin', role: 'UX UI designer', image: '/team1designer.jpg' },
-    { name: 'Allabergenov Dilmurod', role: 'PM', image: '/team1pm.jpg' },
-    { name: 'Otanazarov Otabek', role: 'Backend dasturchi', image: '/team2back.jpg' },
-    { name: 'Jumaniyazov Alibek', role: 'Frontend dasturchi', image: '/team2fr.jpg' },
-    { name: 'Sultonov Zerifboy', role: 'Backend dasturchi', image: '/team2bk.jpg' },
-    { name: 'Shohida', role: "Moliya bo'limi boshlig'i", image: '/team1moliya.jpg' },
-    { name: 'Dilshod', role: 'B2G menejer', image: '/team1dilshod.jpg' },
-    { name: 'Azizbek', role: 'B2B menejer', image: '/team1aziz.jpg' },
-    { name: 'Kamron', role: 'Backend dasturchi', image: '/team2designer4.jpg' },
+    { name: 'Matyaqubov Akrom', role: 'technician', image: '/texnik.jpg' },
+    { name: 'Kurbaniyazov Quvandik', role: 'seo', image: '/team1.jpg' },
+    { name: 'Yusupov Mansur', role: 'manager', image: '/team1boss.png' },
+    { name: 'Ochilov Jaxongirmirzo', role: 'frontend_developer', image: '/team1frme.jpg' },
+    { name: 'Madrimov Xudoshukur', role: 'team_lead', image: '/team1fr.jpg' },
+    { name: 'Xaitboev Jamoladdin', role: 'ux_ui_designer', image: '/team1designer.jpg' },
+
+    { name: 'Allabergenov Dilmurod', role: 'project_manager', image: '/team1pm.jpg' },
+    { name: 'Jalol', role: 'team_lead', image: '/team2fr.jpg' },
+    { name: 'Muxtor', role:'backend_developer' ,image:'/team1muxtor'},
+    { name: 'Otanazarov Otabek', role: 'backend_developer', image: '/team2back.jpg' },
+    { name: 'Jumaniyazov Alibek', role: 'frontend_developer', image: '/team2fr.jpg' },
+    { name: 'Sultonov Zerifboy', role: 'backend_developer', image: '/team2bk.jpg' },
+    { name: 'Shohida', role: 'finance_head', image: '/team1moliya.jpg' },
+    { name: 'Dilshod', role: 'b2g_manager', image: '/team1dilshod.jpg' },
+    { name: 'Azizbek', role: 'b2b_manager', image: '/team1aziz.jpg' },
+    { name: 'Kamron', role: 'backend_developer', image: '/team2designer4.jpg' },
+    { name: "Og'obek", role: 'b2c_manager', image: '/team1ogabek.jpg' },
+ 
   ];
+
+  // Get translated role
+  const getTranslatedRole = (role: string) => {
+    const langKey = lang as keyof typeof teamRoles;
+    return teamRoles[langKey]?.[role as keyof typeof teamRoles[typeof langKey]] || role;
+  };
 
   // Dialog state
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -89,20 +107,92 @@ export default function Team({ t }: { t: Awaited<ReturnType<typeof getDictionary
   // Custom InfiniteMovingCards2 with clickable images
   function InfiniteMovingCardsWithDialog({
     items,
+    speed = "normal",
+    showControls = true,
     ...props
-  }: React.ComponentProps<typeof InfiniteMovingCards2>) {
-    // Copy of InfiniteMovingCards2, but intercepts image click
+  }: {
+    items: { name: string; role: string; image: string; }[];
+    speed?: "fast" | "normal" | "slow";
+    showControls?: boolean;
+  }) {
+    const scrollerRef = React.useRef<HTMLDivElement>(null);
+    const [isPaused, setIsPaused] = useState(false);
+    const [currentTranslate, setCurrentTranslate] = useState(0);
+
+    const getSpeed = () => {
+      if (speed === "fast") return "30s";
+      if (speed === "normal") return "60s";
+      return "120s";
+    };
+
+    // Duplicate items for seamless infinite scroll
+    const duplicatedItems = [...items, ...items];
+    const itemWidth = 320; // Image width (300px) + gap (20px)
+
+    const scrollLeft = () => {
+      setIsPaused(true);
+      const newTranslate = currentTranslate + itemWidth;
+      setCurrentTranslate(newTranslate);
+      
+      // Resume animation after delay
+      setTimeout(() => {
+        setCurrentTranslate(0);
+        setIsPaused(false);
+      }, 2000);
+    };
+
+    const scrollRight = () => {
+      setIsPaused(true);
+      const newTranslate = currentTranslate - itemWidth;
+      setCurrentTranslate(newTranslate);
+      
+      // Resume animation after delay
+      setTimeout(() => {
+        setCurrentTranslate(0);
+        setIsPaused(false);
+      }, 2000);
+    };
+
     return (
       <div
-        className="scroller relative max-w-8xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]"
+        className="relative max-w-8xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]"
       >
-        <ul
-          className="flex w-max md:w-500 min-w-full shrink-0 gap-5 flex-nowrap py-4 animate-scroll hover:[animation-play-state:paused]"
+        {/* {showControls && (
+          <>
+            <button
+              onClick={scrollLeft}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-all backdrop-blur-sm cursor-pointer"
+              aria-label="Scroll left (-1 item)"
+            >
+              <ChevronLeft size={20} className="text-white stroke-white" />
+            </button>
+            <button
+              onClick={scrollRight}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-all backdrop-blur-sm cursor-pointer"
+              aria-label="Scroll right (+1 item)"
+            >
+              <ChevronRight size={20} className="text-white stroke-white" />
+            </button>
+          </>
+        )} */}
+        <div
+          ref={scrollerRef}
+          className={cn(
+            "flex w-max gap-5 py-4",
+            !isPaused && "animate-infinite-scroll",
+            "hover:[animation-play-state:paused]"
+          )}
+          style={{
+            "--animation-duration": getSpeed(),
+            "--animation-direction": "normal",
+            transform: isPaused ? `translateX(${currentTranslate}px)` : undefined,
+            transition: isPaused ? 'transform 0.5s ease-out' : undefined,
+          } as React.CSSProperties}
         >
-          {items.map((item, idx) => (
-            <li
+          {duplicatedItems.map((item, idx) => (
+            <div
               className="relative shrink-0 flex items-center flex-col rounded-2xl cursor-pointer group"
-              key={idx}
+              key={`${item.name}-${idx}`}
               onClick={() => handleImageClick(item)}
               tabIndex={0}
               onKeyDown={e => {
@@ -114,16 +204,16 @@ export default function Team({ t }: { t: Awaited<ReturnType<typeof getDictionary
             >
               <Image
                 src={item.image}
-                alt={`Image ${idx}`}
+                alt={item.name}
                 width={300}
                 height={400}
                 className="rounded-3xl h-[400px] w-[300px] object-cover group-hover:scale-105 transition-transform"
               />
-              <h3>{item.name}</h3>
-              <p>{item.role}</p>
-            </li>
+              <h3 className="mt-2 text-lg font-semibold text-white">{item.name}</h3>
+              <p className="text-gray-300">{getTranslatedRole(item.role)}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     );
   }
@@ -147,19 +237,19 @@ export default function Team({ t }: { t: Awaited<ReturnType<typeof getDictionary
             particleDensity={1200}
             className="w-full h-full"
             particleColor="#FFFFFF"
-          />
+            />
           <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
         </div>
       </div>
       <div className="w-screen overflow-clip -my-4">
-        <InfiniteMovingCardsWithDialog items={teamMembers} speed="slow" />
+        <InfiniteMovingCardsWithDialog items={teamMembers} speed="normal" />
       </div>
       <TeamImageDialog
         open={dialogOpen && !!selectedMember}
         onClose={() => setDialogOpen(false)}
         image={selectedMember?.image || ''}
         name={selectedMember?.name || ''}
-        role={selectedMember?.role || ''}
+        role={getTranslatedRole(selectedMember?.role || '')}
       />
     </section>
   );

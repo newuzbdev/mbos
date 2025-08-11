@@ -1,0 +1,44 @@
+{
+  "en": {
+    "technician": "Technician",
+    "seo": "CEO", 
+    "manager": "Manager",
+    "frontend_developer": "Frontend Developer",
+    "team_lead": "Team Lead",
+    "ux_ui_designer": "UX UI Designer",
+    "project_manager": "Project Manager",
+    "backend_developer": "Backend Developer",
+    "finance_head": "Finance Department Head",
+    "b2g_manager": "B2G Manager",
+    "b2b_manager": "B2B Manager",
+    "b2c_manager": "B2C Manager"
+  },
+  "ru": {
+    "technician": "Техник",
+    "seo": "Исполнительный директор",
+    "manager": "Руководитель", 
+    "frontend_developer": "Frontend-разработчик",
+    "team_lead": "Тимлид",
+    "ux_ui_designer": "UX UI Дизайнер",
+    "project_manager": "Проект-менеджер",
+    "backend_developer": "Backend-разработчик",
+    "finance_head": "Руководитель финансового отдела",
+    "b2g_manager": "B2G Менеджер",
+    "b2b_manager": "B2B Менеджер",
+    "b2c_manager": "B2C Менеджер"
+  },
+  "uz": {
+    "technician": "Texnik",
+    "seo": "Ijrochi direktor",
+    "manager": "Raxbar",
+    "frontend_developer": "Frontend dasturchi", 
+    "team_lead": "Timlid",
+    "ux_ui_designer": "UX UI Dizayner",
+    "project_manager": "Loyiha menejeri",
+    "backend_developer": "Backend dasturchi",
+    "finance_head": "Moliya bo'limi boshlig'i",
+    "b2g_manager": "B2G menejer",
+    "b2b_manager": "B2B menejer",
+    "b2c_manager": "B2C menejer"
+  }
+}

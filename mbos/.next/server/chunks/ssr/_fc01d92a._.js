@@ -955,7 +955,7 @@ function About({ t }) {
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "col-span-2 row-span-2 md:row-span-3 rounded-tl-3xl rounded-tr-3xl md:rounded-tr-none border border-gray-100/50 flex flex-col items-center justify-start md:pt-30 gap-2 p-5 md:px-20",
+                            className: "col-span-2 row-span-2 md:row-span-3 rounded-tl-3xl rounded-tr-3xl md:rounded-tr-none border border-gray-100/50 flex flex-col items-center justify-start md:pb-10 gap-2 p-5 md:px-20 h-[320px] md:h-[530px]",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                     className: "font-bold text-[34px] md:text-5xl",
@@ -974,7 +974,7 @@ function About({ t }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "font-semibold text-[18px]/[30px] text-center md:text-2xl/[32px]",
+                                    className: "font-semibold text-[18px]/[30px] text-justify md:text-2xl/[32px]",
                                     children: t.aboutp
                                 }, void 0, false, {
                                     fileName: "[project]/components/About.tsx",
@@ -1086,7 +1086,7 @@ function About({ t }) {
                             className: "sm:rounded-bl-3xl border border-gray-100/50",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "font-bold text-4xl md:text-6xl my-8 text-center w-full",
+                                    className: "font-bold text-4xl md:text-6xl my-8 text-start pl-10 w-full",
                                     children: "15.4K+"
                                 }, void 0, false, {
                                     fileName: "[project]/components/About.tsx",
@@ -1094,7 +1094,7 @@ function About({ t }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-sm font-light text-start pl-2 md:px-5 w-full",
+                                    className: "text-lg font-bold text-start px-10 w-full",
                                     children: t.aboutp2
                                 }, void 0, false, {
                                     fileName: "[project]/components/About.tsx",
@@ -1111,7 +1111,7 @@ function About({ t }) {
                             className: "border border-gray-100/50",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "font-bold text-4xl md:text-6xl my-8 text-center w-full",
+                                    className: "font-bold text-4xl md:text-6xl my-8 text-start pl-10 w-full",
                                     children: "300+"
                                 }, void 0, false, {
                                     fileName: "[project]/components/About.tsx",
@@ -1119,7 +1119,7 @@ function About({ t }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-sm font-light text-start pl-2 md:px-5 w-full",
+                                    className: "text-lg font-bold text-start px-10 w-full",
                                     children: t.aboutp3
                                 }, void 0, false, {
                                     fileName: "[project]/components/About.tsx",
@@ -1136,7 +1136,7 @@ function About({ t }) {
                             className: "border rounded-bl-3xl md:rounded-bl-none border-gray-100/50",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "font-bold text-4xl md:text-6xl my-8 text-center w-full",
+                                    className: "font-bold text-4xl md:text-6xl my-8 text-start px-10 w-full",
                                     children: "10 +"
                                 }, void 0, false, {
                                     fileName: "[project]/components/About.tsx",
@@ -1144,7 +1144,7 @@ function About({ t }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-sm font-light text-start pl-2 md:px-5 w-full",
+                                    className: "text-lg font-bold text-start px-10 w-full",
                                     children: t.year
                                 }, void 0, false, {
                                     fileName: "[project]/components/About.tsx",
@@ -1161,7 +1161,7 @@ function About({ t }) {
                             className: "rounded-br-3xl border border-gray-100/50",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "font-bold text-4xl md:text-6xl my-8 text-center w-full",
+                                    className: "font-bold text-4xl md:text-6xl my-8 text-start pl-10 w-full",
                                     children: "20 +"
                                 }, void 0, false, {
                                     fileName: "[project]/components/About.tsx",
@@ -1169,7 +1169,7 @@ function About({ t }) {
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-sm font-light text-start pl-2 md:px-5 w-full",
+                                    className: "text-lg font-bold text-start px-10 w-full",
                                     children: t.aboutp5
                                 }, void 0, false, {
                                     fileName: "[project]/components/About.tsx",
@@ -1261,7 +1261,8 @@ async function page(props) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$Team$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
-                t: t
+                t: t,
+                lang: lang
             }, void 0, false, {
                 fileName: "[project]/app/[lang]/page.tsx",
                 lineNumber: 23,

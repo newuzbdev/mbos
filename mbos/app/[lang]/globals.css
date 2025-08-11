@@ -1,4 +1,24 @@
 @import 'tailwindcss';
+@theme inline {
+  --animate-scroll: infinite-scroll var(--animation-duration, 40s) var(--animation-direction, normal) linear infinite;
+  --animate-infinite-scroll: infinite-scroll var(--animation-duration, 40s) var(--animation-direction, normal) linear infinite;
+
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+
+  @keyframes infinite-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
+
 @import 'tw-animate-css';
 @custom-variant dark (&:is(.dark *));
 @theme inline {
@@ -147,6 +167,15 @@
     }
 }
 
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
 .mbos-button {
     background-color: black;
     position: relative;
@@ -201,12 +230,4 @@
 }
 
 
-@theme inline {
-  --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
 
-  @keyframes scroll {
-    to {
-      transform: translate(calc(-50% - 0.5rem));
-    }
-  }
-}

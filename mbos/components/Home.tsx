@@ -44,35 +44,35 @@ export default function Home({
       width: 75,
       height: 75
     },
-    {
-      src: '/hamkor1.png',
-      className: 'size-12 md:size-20',
-      width: 75,
-      height: 75
+     {
+      src: '/hamkor6.svg',
+      className: 'w-[100px] h-[60px] md:h-[100px] md:w-[175px]',
+      width: 175,
+      height: 100
     },
-    {
-      src: '/hamkor2.png',
-      className: 'w-[130px] h-[45px] md:h-[74px] md:w-[205px]',
-      width: 205,
-      height: 74
+     {
+      src: '/hamkor7.svg',
+      className: 'w-[100px] h-[60px] md:h-[100px] md:w-[175px]',
+      width: 175,
+      height: 100
     },
-    {
-      src: '/hamkor3.png',
-      className: 'size-12 md:size-20',
-      width: 75,
-      height: 75
+      {
+      src: '/hikvision.svg',
+      className: 'w-[100px] h-[60px] md:h-[100px] md:w-[175px]',
+      width: 175,
+      height: 100
     },
-    {
-      src: '/hamkor4.png',
-      className: 'w-[130px] h-[45px] md:h-[70px] md:w-[199px]',
-      width: 199,
-      height: 70
+      {
+      src: '/itpark.svg',
+      className: 'w-[100px] h-[60px] md:h-[100px] md:w-[175px]',
+      width: 175,
+      height: 100
     },
-    {
-      src: '/hamkor5.png',
-      className: 'size-12 md:size-20',
-      width: 75,
-      height: 75
+       {
+      src: '/soliq.svg',
+      className: 'w-[100px] h-[60px] md:h-[100px] md:w-[175px]',
+      width: 175,
+      height: 100
     }
   ]
   return (

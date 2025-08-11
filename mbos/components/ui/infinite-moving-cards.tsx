@@ -49,7 +49,7 @@ export const InfiniteMovingCards = ({
       if (direction === "left") {
         containerRef.current.style.setProperty(
           "--animation-direction",
-          "forwards",
+          "normal",
         );
       } else {
         containerRef.current.style.setProperty(
