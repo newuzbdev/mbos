@@ -109,7 +109,7 @@ export default function Products({t}: {t: Awaited<ReturnType<typeof getDictionar
     },
     {
       image: '/project4.svg',
-      title: 'Urganch shahar mnazorat',
+      title: t.mnazorat,
       isReversed: true,
       storeLinks: false
     }

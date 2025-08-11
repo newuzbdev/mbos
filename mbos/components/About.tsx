@@ -23,45 +23,45 @@ export default function About({t}: {t: Awaited<ReturnType<typeof getDictionary>>
             </div>
             <MovingButton borderRadius='24px' containerClassName='w-[calc(100vw-10px)] md:w-[calc(100vw-200px)] h-auto md:h-full p-1 mx-1' className='bg-black' borderClassName='size-60 '>
                 <div className=' grid-cols-2 grid-rows-6 grid md:grid-cols-4 md:grid-rows-4 gap-4 size-full'>
-                    <Image src='/backgroundFooter.png' alt='background' width={100} height={100} className='absolute w-full h-full bg-black object-cover blur-2xl -z-10' />
-                    <div className='col-span-2 row-span-2 md:row-span-3 rounded-tl-3xl rounded-tr-3xl md:rounded-tr-none border border-gray-100/50 flex flex-col items-center justify-start md:pb-10 gap-2 p-5 md:px-20 h-[320px] md:h-[530px]'>
+                    <Image src='/backgroundFooter.png' alt='background' width={100} height={200} className='absolute w-full h-full bg-black object-cover blur-2xl -z-10' />
+                    <div className='col-span-2 row-span-2 md:row-span-3 rounded-tl-3xl rounded-tr-3xl md:rounded-tr-none border border-gray-100/50 flex flex-col items-center justify-start md:pb-10 gap-2 p-5 md:px-20 h-[340px] md:h-[570px]'>
                         <h2 className='font-bold text-[34px] md:text-5xl'>MBOS</h2>
                         <p className='font-semibold text-[18px]/[30px] text-center md:text-2xl/[32px]'>Multi Branch Online Service</p>
-                        <p className='font-semibold text-[18px]/[30px] text-justify md:text-2xl/[32px]'>{t.aboutp}</p>
+                        <p className='font-semibold text-[18px]/[30px] text-justify md:text-2xl/[32px] mb-16'>{t.aboutp}</p>
                     </div>
                     <div className='col-span-2 row-span-2 md:row-span-3 flex flex-col gap-4 rounded-tr-3xl'>
                         <div className='flex items-center gap-4 justify-center'>
-                            <div className='relative md:h-[255px] h-[150px] w-full border border-gray-100/50'>
+                            <div className='relative md:h-[275px] h-[165px] w-full border border-gray-100/50'>
                                 <Image src='/room1.png' alt='building' fill className='object-cover' />
                             </div>
-                            <div className='relative md:h-[255px] h-[150px] w-full border border-gray-100/50'>
+                            <div className='relative md:h-[275px] h-[165px] w-full border border-gray-100/50'>
                                 <Image src='/room3.png' alt='building' fill className='object-cover' />
                             </div>
                         </div>
                         <div className='flex items-center gap-4 justify-center'>
-                            <div className='relative md:h-[255px] h-[150px] w-full border border-gray-100/50'>
+                            <div className='relative md:h-[275px] h-[165px] w-full border border-gray-100/50'>
                                 <Image src='/room3.png' alt='building' fill className='object-cover' />
                             </div>
-                            <div className='relative md:h-[255px] h-[150px] w-full border border-gray-100/50'>
+                            <div className='relative md:h-[275px] h-[165px] w-full border border-gray-100/50'>
                                 <Image src='/room5.png' alt='building' fill className='object-cover' />
                             </div>
                         </div>
                     </div>
                     <div className='sm:rounded-bl-3xl border border-gray-100/50'>
                         <p className='font-bold text-4xl md:text-6xl my-8 text-start pl-10 w-full'>15.4K+</p>
-                        <p className='text-lg font-bold text-start px-10 w-full'>{t.aboutp2}</p>
+                        <p className='text-lg font-bold text-start px-10 w-full pb-4'>{t.aboutp2}</p>
                     </div>
                     <div className='border border-gray-100/50'>
                         <p className='font-bold text-4xl md:text-6xl my-8 text-start pl-10 w-full'>300+</p>
-                        <p className='text-lg font-bold text-start px-10 w-full'>{t.aboutp3}</p>
+                        <p className='text-lg font-bold text-start px-10 w-full pb-4'>{t.aboutp3}</p>
                     </div>
                     <div className='border rounded-bl-3xl md:rounded-bl-none border-gray-100/50'>
                         <p className='font-bold text-4xl md:text-6xl my-8 text-start px-10 w-full'>10 +</p>
-                        <p className='text-lg font-bold text-start px-10 w-full'>{t.year}</p>
+                        <p className='text-lg font-bold text-start px-10 w-full pb-4'>{t.year}</p>
                     </div>
                     <div className='rounded-br-3xl border border-gray-100/50'>
                         <p className='font-bold text-4xl md:text-6xl my-8 text-start pl-10 w-full'>20 +</p>
-                        <p className='text-lg font-bold text-start px-10 w-full'>{t.aboutp5 }</p>
+                        <p className='text-lg font-bold text-start px-10 w-full pb-4'>{t.aboutp5 }</p>
                     </div>
                 </div>
             </MovingButton>

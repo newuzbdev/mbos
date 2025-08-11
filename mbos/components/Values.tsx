@@ -59,7 +59,9 @@ export default function Values({
       }}
     >
       <div className="h-[7rem] flex items-center justify-center">
-        <TextHoverEffect text={t.values} />
+         <h1 className="uppercase text-3xl md:text-5xl font-bold">
+                 <span className="text-mbosLinear">{t.values}</span>
+            </h1>
       </div>
       <div
         className="relative w-full flex flex-col items-center justify-center min-h-[180px] overflow-hidden"
