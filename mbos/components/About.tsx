@@ -32,18 +32,18 @@ export default function About({t}: {t: Awaited<ReturnType<typeof getDictionary>>
                     <div className='col-span-2 row-span-2 md:row-span-3 flex flex-col gap-4 rounded-tr-3xl'>
                         <div className='flex items-center gap-4 justify-center'>
                             <div className='relative md:h-[275px] h-[165px] w-full border border-gray-100/50'>
-                                <Image src='/room1.png' alt='building' fill className='object-cover' />
+                                <Image src='/room1.jpg' alt='building' fill className='object-cover' />
                             </div>
                             <div className='relative md:h-[275px] h-[165px] w-full border border-gray-100/50'>
-                                <Image src='/room3.png' alt='building' fill className='object-cover' />
+                                <Image src='/room2.jpg' alt='building' fill className='object-cover' />
                             </div>
                         </div>
                         <div className='flex items-center gap-4 justify-center'>
                             <div className='relative md:h-[275px] h-[165px] w-full border border-gray-100/50'>
-                                <Image src='/room3.png' alt='building' fill className='object-cover' />
+                                <Image src='/room3.jpg' alt='building' fill className='object-cover' />
                             </div>
                             <div className='relative md:h-[275px] h-[165px] w-full border border-gray-100/50'>
-                                <Image src='/room5.png' alt='building' fill className='object-cover' />
+                                <Image src='/room4.jpg' alt='building' fill className='object-cover' />
                             </div>
                         </div>
                     </div>
