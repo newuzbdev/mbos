@@ -58,13 +58,13 @@ export default function Footer({ t }: { t: Awaited<ReturnType<typeof getDictiona
                         <Phone size={20} /> +998(71) 200-11-51
                     </li>
                     <li className='flex flex-row gap-2'>
-                        <Phone size={20}/> +998(71) 200-11-51
+                        <Phone size={20}/> +998 (62) 227 76 76
                     </li>
                 </ul>
             </section>
             <section className='w-full py-8 px-4 -mt-4 flex mx-2 h-12 flex-col md:flex-row justify-between items-end md:items-center'>
                 <p className='text-xs'>
-                    Copyright © 2024 Brain Development. All Rights Reserved.  |  <Link href='###'> Privacy Policy</Link>  |  <Link href='###'>Terms of Service</Link>
+                Copyright © 2025 MBOS. All Rights Reserved. | Privacy Policy | Terms of Service= <Link href='###'> Privacy Policy</Link>  |  <Link href='###'>Terms of Service</Link>
                 </p>
                 <div className='flex gap-2 items-center'>
                     <Link href='###'>

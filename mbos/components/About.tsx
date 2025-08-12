@@ -21,96 +21,115 @@ export default function About({ t }: { t: Awaited<ReturnType<typeof getDictionar
                     <div className='absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]'></div>
                 </div>
             </div>
-            <MovingButton borderRadius='24px' containerClassName='w-[calc(100vw-10px)] md:w-[calc(100vw-200px)] h-auto md:h-full p-1 mx-1' className='bg-black' borderClassName='size-60 '>
-                {/* Responsive grid: lg unchanged, sm/md stack aboutp and images vertically with minimal gap */}
-                <div className='relative size-full'>
-                    <Image src='/backgroundFooter.png' alt='background' width={100} height={200} className='absolute w-full h-full bg-black object-cover blur-2xl -z-10' />
-                    {/* lg:grid, sm/md:flex-col */}
-                    <div className='hidden lg:grid grid-cols-4 grid-rows-4 gap-4 size-full'>
+            <MovingButton
+                borderRadius='24px'
+                containerClassName='w-full max-w-[1400px] md:w-[calc(100vw-200px)] h-auto md:h-full p-1 mx-1'
+                className='bg-black'
+                borderClassName='size-60 '
+            >
+                <div className='relative w-full h-full'>
+                    <Image
+                        src='/backgroundFooter.png'
+                        alt='background'
+                        width={100}
+                        height={200}
+                        className='absolute w-full h-full bg-black object-cover blur-2xl -z-10'
+                    />
+                    {/* Desktop grid */}
+                    <div className='hidden lg:grid grid-cols-4 grid-rows-4 gap-4 w-full h-full'>
                         {/* Main info block */}
-                        <div className='col-span-2 row-span-3 rounded-tl-3xl rounded-tr-none border border-gray-100/50 flex flex-col items-center justify-start gap-2 p-5 md:px-20 h-[570px]'>
-                            <h2 className='font-bold text-[34px] md:text-5xl'>MBOS</h2>
+                        <div className='col-span-2 row-span-3 rounded-tl-3xl rounded-tr-none border border-gray-100/50 flex flex-col items-center justify-start gap-2 p-5 md:px-12 xl:px-20 h-full min-h-[420px] max-h-[600px]'>
+                            <h2 className='font-bold text-[32px] md:text-5xl'>MBOS</h2>
                             <p className='font-semibold text-[18px]/[30px] text-center md:text-2xl/[32px]'>Multi Branch Online Service</p>
-                            <p className='font-semibold text-[18px]/[30px] text-justify md:text-2xl/[32px] mb-16'>{t.aboutp}</p>
+                            <p
+                                className='font-semibold text-[18px]/[30px] text-justify md:text-2xl/[32px] mb-6 md:mb-10 w-full max-w-full overflow-y-auto'
+                                style={{
+                                    maxHeight: 'calc(100% - 120px)',
+                                    wordBreak: 'break-word',
+                                }}
+                            >
+                                {t.aboutp}
+                            </p>
                         </div>
                         {/* Images */}
                         <div className='col-span-2 row-span-3 flex flex-col gap-4 rounded-tr-3xl'>
                             <div className='flex items-center gap-4 justify-center'>
-                                <div className='relative h-[275px] w-full border border-gray-100/50'>
+                                <div className='relative h-[180px] xl:h-[275px] w-full border border-gray-100/50'>
                                     <Image src='/room1.jpg' alt='building' fill className='object-cover' />
                                 </div>
-                                <div className='relative h-[275px] w-full border border-gray-100/50'>
+                                <div className='relative h-[180px] xl:h-[275px] w-full border border-gray-100/50'>
                                     <Image src='/room2.jpg' alt='building' fill className='object-cover' />
                                 </div>
                             </div>
                             <div className='flex items-center gap-4 justify-center'>
-                                <div className='relative h-[275px] w-full border border-gray-100/50'>
+                                <div className='relative h-[180px] xl:h-[275px] w-full border border-gray-100/50'>
                                     <Image src='/room3.jpg' alt='building' fill className='object-cover' />
                                 </div>
-                                <div className='relative h-[275px] w-full border border-gray-100/50'>
+                                <div className='relative h-[180px] xl:h-[275px] w-full border border-gray-100/50'>
                                     <Image src='/room4.jpg' alt='building' fill className='object-cover' />
                                 </div>
                             </div>
                         </div>
-                        <div className='sm:rounded-bl-3xl border border-gray-100/50'>
-                            <p className='font-bold text-6xl my-8 text-start pl-10 w-full'>15.4K+</p>
-                            <p className='text-lg font-bold text-start px-10 w-full pb-4'>{t.aboutp2}</p>
+                        {/* Stats blocks */}
+                        <div className='sm:rounded-bl-3xl border border-gray-100/50 flex flex-col justify-center'>
+                            <p className='font-bold text-4xl xl:text-6xl my-4 xl:my-8 text-start pl-6 xl:pl-10 w-full'>15.4K+</p>
+                            <p className='text-base xl:text-lg font-bold text-start px-6 xl:px-10 w-full pb-2 xl:pb-4'>{t.aboutp2}</p>
                         </div>
-                        <div className='border border-gray-100/50'>
-                            <p className='font-bold text-6xl my-8 text-start pl-10 w-full'>300+</p>
-                            <p className='text-lg font-bold text-start px-10 w-full pb-4'>{t.aboutp3}</p>
+                        <div className='border border-gray-100/50 flex flex-col justify-center'>
+                            <p className='font-bold text-4xl xl:text-6xl my-4 xl:my-8 text-start pl-6 xl:pl-10 w-full'>300+</p>
+                            <p className='text-base xl:text-lg font-bold text-start px-6 xl:px-10 w-full pb-2 xl:pb-4'>{t.aboutp3}</p>
                         </div>
-                        <div className='border rounded-bl-3xl md:rounded-bl-none border-gray-100/50'>
-                            <p className='font-bold text-6xl my-8 text-start px-10 w-full'>10 +</p>
-                            <p className='text-lg font-bold text-start px-10 w-full pb-4'>{t.year}</p>
+                        <div className='border rounded-bl-3xl md:rounded-bl-none border-gray-100/50 flex flex-col justify-center'>
+                            <p className='font-bold text-4xl xl:text-6xl my-4 xl:my-8 text-start px-6 xl:px-10 w-full'>10+</p>
+                            <p className='text-base xl:text-lg font-bold text-start px-6 xl:px-10 w-full pb-2 xl:pb-4'>{t.year}</p>
                         </div>
-                        <div className='rounded-br-3xl border border-gray-100/50'>
-                            <p className='font-bold text-6xl my-8 text-start pl-10 w-full'>20 +</p>
-                            <p className='text-lg font-bold text-start px-10 w-full pb-4'>{t.aboutp5}</p>
+                        <div className='rounded-br-3xl border border-gray-100/50 flex flex-col justify-center'>
+                            <p className='font-bold text-4xl xl:text-6xl my-4 xl:my-8 text-start pl-6 xl:pl-10 w-full'>20+</p>
+                            <p className='text-base xl:text-lg font-bold text-start px-6 xl:px-10 w-full pb-2 xl:pb-4'>{t.aboutp5}</p>
                         </div>
                     </div>
-                    {/* sm/md: stack aboutp and images vertically, minimal gap */}
-                    <div className='lg:hidden flex flex-col gap-2'>
+                    {/* Mobile/tablet: stack aboutp and images vertically, minimal gap */}
+                    <div className='lg:hidden flex flex-col gap-2 w-full max-w-2xl mx-auto'>
                         {/* Main info block */}
                         <div className='rounded-t-3xl border border-gray-100/50 flex flex-col items-center justify-start gap-1 p-4'>
-                            <h2 className='font-bold text-[28px]'>MBOS</h2>
-                            <p className='font-semibold text-[16px]/[26px] text-center'>Multi Branch Online Service</p>
-                            <p className='font-semibold text-[16px]/[26px] text-justify mb-2'>{t.aboutp}</p>
+                            <h2 className='font-bold text-[24px] sm:text-[28px]'>MBOS</h2>
+                            <p className='font-semibold text-[15px]/[24px] sm:text-[16px]/[26px] text-center'>Multi Branch Online Service</p>
+                            <p className='font-semibold text-[15px]/[24px] sm:text-[16px]/[26px] text-justify mb-2 w-full break-words'>{t.aboutp}</p>
                         </div>
                         {/* Images: 1 col, minimal gap */}
                         <div className='flex flex-col gap-2 mt-0'>
                             <div className='flex flex-col gap-2'>
-                                <div className='relative h-[120px] w-full border border-gray-100/50'>
+                                <div className='relative h-[100px] sm:h-[120px] w-full border border-gray-100/50'>
                                     <Image src='/room1.jpg' alt='building' fill className='object-cover' />
                                 </div>
-                                <div className='relative h-[120px] w-full border border-gray-100/50'>
+                                <div className='relative h-[100px] sm:h-[120px] w-full border border-gray-100/50'>
                                     <Image src='/room2.jpg' alt='building' fill className='object-cover' />
                                 </div>
-                                <div className='relative h-[120px] w-full border border-gray-100/50'>
+                                <div className='relative h-[100px] sm:h-[120px] w-full border border-gray-100/50'>
                                     <Image src='/room3.jpg' alt='building' fill className='object-cover' />
                                 </div>
-                                <div className='relative h-[120px] w-full border border-gray-100/50'>
+                                <div className='relative h-[100px] sm:h-[120px] w-full border border-gray-100/50'>
                                     <Image src='/room4.jpg' alt='building' fill className='object-cover' />
                                 </div>
                             </div>
                         </div>
                         {/* Stats blocks */}
                         <div className='grid grid-cols-2 gap-2 mt-2'>
-                            <div className='rounded-bl-3xl border border-gray-100/50'>
-                                <p className='font-bold text-3xl my-4 text-start pl-4 w-full'>15.4K+</p>
-                                <p className='text-base font-bold text-start px-4 w-full pb-2'>{t.aboutp2}</p>
+                            <div className='rounded-bl-3xl border border-gray-100/50 flex flex-col justify-center'>
+                                <p className='font-bold text-2xl sm:text-3xl my-2 sm:my-4 text-start pl-2 sm:pl-4 w-full'>15.4K+</p>
+                                <p className='text-sm sm:text-base font-bold text-start px-2 sm:px-4 w-full pb-1 sm:pb-2'>{t.aboutp2}</p>
                             </div>
-                            <div className='border border-gray-100/50'>
-                                <p className='font-bold text-3xl my-4 text-start pl-4 w-full'>300+</p>
-                                <p className='text-base font-bold text-start px-4 w-full pb-2'>{t.aboutp3}</p>
+                            <div className='border border-gray-100/50 flex flex-col justify-center'>
+                                <p className='font-bold text-2xl sm:text-3xl my-2 sm:my-4 text-start pl-2 sm:pl-4 w-full'>300+</p>
+                                <p className='text-sm sm:text-base font-bold text-start px-2 sm:px-4 w-full pb-1 sm:pb-2'>{t.aboutp3}</p>
                             </div>
-                            <div className='border border-gray-100/50'>
-                                <p className='font-bold text-3xl my-4 text-start px-4 w-full'>10 +</p>
-                                <p className='text-base font-bold text-start px-4 w-full pb-2'>{t.year}</p>
+                            <div className='border border-gray-100/50 flex flex-col justify-center'>
+                                <p className='font-bold text-2xl sm:text-3xl my-2 sm:my-4 text-start px-2 sm:px-4 w-full'>10+</p>
+                                <p className='text-sm sm:text-base font-bold text-start px-2 sm:px-4 w-full pb-1 sm:pb-2'>{t.year}</p>
                             </div>
-                            <div className='rounded-br-3xl border border-gray-100/50'>
-                                <p className='font-bold text-3xl my-4 text-start pl-4 w-full'>20 +</p>
-                                <p className='text-base font-bold text-start px-4 w-full pb-2'>{t.aboutp5}</p>
+                            <div className='rounded-br-3xl border border-gray-100/50 flex flex-col justify-center'>
+                                <p className='font-bold text-2xl sm:text-3xl my-2 sm:my-4 text-start pl-2 sm:pl-4 w-full'>20+</p>
+                                <p className='text-sm sm:text-base font-bold text-start px-2 sm:px-4 w-full pb-1 sm:pb-2'>{t.aboutp5}</p>
                             </div>
                         </div>
                     </div>

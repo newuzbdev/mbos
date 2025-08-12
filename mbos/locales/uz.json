@@ -47,11 +47,11 @@
     "name": "Ism",
     "message": "Sizga qanday yordam bera olamiz?",
     "send": "Yuborish",
-    "values": "Qadriyatlarimiz",
+    "values": "Qadriyatlari",
     "valueAbout1": "Har doim yangi bilimlarni o'rganish va o'rgatish",
     "valueAbout2": "Jamoaviylik, samimiylik va ochiqlik",
     "valueAbout3": "Inson qadri prinsiplari asosida ish olib borish",
-    "valueAbout4": "Mijoz otangdek ulug",
+    "valueAbout4": "Mijoz otangdek ulug'",
     "footerp": "Kompaniya 2020-yil fevral oyida Yusupov Mansur, Sahabutdinov Dilshod va Sobirov Zafarbek tomonidan Mbos startap loyihasini ishlab chiqish bilan boshlangan va kompaniya nomi ham Mbos deb nomlangan.",
     "sitemap": "Sayt xaritasi",
     "address": "Tinchlik ko'chasi 6a uy, Urganch, Xorazm viloyati, O'zbekiston",
@@ -59,5 +59,6 @@
     "taskieLink": "Taskie - Xodimlarni nazorat qilish",
     "GPS": "Kuzatuv GPS",
     "queueLink": "Elektron Navbat",
-    "mnazorat": "Urganch shahar mnazorat"
+    "mnazorat": "Urganch shahar mnazorat",
+    "company":"Kompaniya"
 }

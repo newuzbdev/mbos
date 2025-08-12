@@ -8,6 +8,13 @@ import { getDictionary } from '@/get-dictionary'
 const ITEM_HEIGHT = 64 // px, for text size
 const ANIMATION_DURATION = 1.2 // seconds, a bit faster for smoothness
 
+// Helper to detect if language is English or Uzbek
+function isCompanyFirst(t: any) {
+  // crude check: if t.company is "Company" or "Kompaniya" (add more if needed)
+  const company = (t.company || '').toLowerCase()
+  return company === 'company' || company === 'kompaniya'
+}
+
 export default function Values({
   t
 }: {
@@ -48,6 +55,9 @@ export default function Values({
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Determine order: company first for English/Uzbek, else values first
+  const companyFirst = isCompanyFirst(t)
+
   return (
     <div
       className='mt-20 w-[calc(100vw-10px)] -mb-20'
@@ -58,10 +68,22 @@ export default function Values({
         transition: 'opacity 0.5s'
       }}
     >
-      <div className="h-[7rem] flex items-center justify-center">
-         <h1 className="uppercase text-3xl md:text-5xl font-bold">
-                 <span className="text-mbosLinear">{t.values}</span>
+      <div className="h-[7rem] flex items-center justify-center space-x-4">
+        {companyFirst ? (
+          <>
+            <p className='md:text-5xl font-bold uppercase text-3xl gap-2'>{t.company}</p>
+            <h1 className="uppercase text-3xl md:text-5xl font-bold">
+              <span className="text-mbosLinear">{t.values}</span>
             </h1>
+          </>
+        ) : (
+          <>
+            <h1 className="uppercase text-3xl md:text-5xl font-bold">
+              <span className="text-mbosLinear">{t.values}</span>
+            </h1>
+            <p className='md:text-5xl font-bold uppercase text-3xl gap-2'>{t.company}</p>
+          </>
+        )}
       </div>
       <div
         className="relative w-full flex flex-col items-center justify-center min-h-[180px] overflow-hidden"

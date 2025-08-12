@@ -82,7 +82,7 @@ export default function Team({
 
         { name: 'Jumaniyazov Alibek', role: 'frontend_developer', image: '/team2fr.jpg' },
         { name: 'Abudllayev Azizbek', role: 'b2b_manager', image: '/team1aziz.jpg' },
-        { name: "Matqurbanov Og'abek", role: 'b2c_manager', image: '/team1ogabek.jpg' },
+        { name: "Matqurbanov Og'abek", role: 'b2c_manager', image: '/team1-ogabek.jpg' },
     ];
 
     // Get translated role

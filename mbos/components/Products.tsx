@@ -40,13 +40,13 @@ const ProjectCard = ({
       containerClassName='w-full md:w-1/2 md:h-96 p-1' 
       className='bg-black border border-gray-400 hover:border-gray-300 transition-all flex flex-col items-center justify-center gap-2 p-3 overflow-hidden group'
     >
-      <Image 
-        src='/backgroundFooter.png' 
-        alt='background' 
-        width={1400} 
-        height={1400} 
-        className='absolute size-[1300px] bg-black object-cover blur-lg -z-10' 
-      />
+    <Image
+                        src='/backgroundFooter.png'
+                        alt='background'
+                        width={100}
+                        height={200}
+                        className='absolute w-full h-full bg-black object-cover blur-2xl -z-10'
+                    />
       <Image 
         src={image} 
         alt={typeof title === 'string' ? title : 'Project image'} 

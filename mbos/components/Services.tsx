@@ -15,13 +15,13 @@ const ServiceCard = ({ icon, title, description }: {
     containerClassName='md:w-72 w-full h-auto md:h-64 p-px m-1' 
     className='border border-gray-400 flex flex-col items-start p-4 justify-start gap-4 bg-black'
   >
-    <Image 
-      src='/backgroundFooter.png' 
-      alt='background' 
-      width={1400} 
-      height={1400} 
-      className='absolute size-[1300px] bg-black object-cover blur-lg -z-10' 
-    />
+   <Image
+                        src='/backgroundFooter.png'
+                        alt='background'
+                        width={100}
+                        height={200}
+                        className='absolute w-full h-full bg-black object-cover blur-2xl -z-10'
+                    />
     <h3 className='text-center mb-2 text-2xl font-semibold text-mbosColor2'>{icon} {title}</h3>
     <p className='text-[16px]/[24px] font-light px-2'>{description}</p>
   </MovingButton>

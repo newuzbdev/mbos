@@ -47,7 +47,7 @@
     "name": "Name",
     "message": "How can we help you?",
     "send": "Send",
-    "values": "Our values",
+    "values": "Values",
     "valueAbout1": "Always learning and teaching new knowledge",
     "valueAbout2": "Teamwork, honesty, and openness",
     "valueAbout3": "Working on the principles of human dignity",
@@ -59,6 +59,7 @@
     "taskieLink": "Taskie - Employee monitoring",
     "GPS": "Tracking GPS",
     "queueLink": "Electronic Queue",
-    "mnazorat": "Urganch City mnazorat"
+    "mnazorat": "Urganch City mnazorat",
+    "company":"Company"
   }
   
