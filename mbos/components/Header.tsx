@@ -54,12 +54,12 @@ export default function Header({t}: {t: Awaited<ReturnType<typeof getDictionary>
     return (
         <>
             <div className='fixed md:hidden top-0 left-0 w-screen h-16 bg-black/60 z-40 flex justify-between items-center py-5 px-3'>
-                <Link onClick={handleMenu} href='#home'>
+                <Link onClick={handleMenu} href='#home' className='cursor-pointer'>
                     <Image src='/logo.svg' alt='Logo' width={80} height={80}></Image>
                 </Link>
                 <div className='flex items-center'>
                     <LocaleSwitcher />
-                    <button onClick={handleMenu} className='ml-2'>
+                    <button onClick={handleMenu} className='ml-2 cursor-pointer'>
                         {!open ? <Menu /> : <X />}
                     </button>
                 </div>
@@ -70,32 +70,32 @@ export default function Header({t}: {t: Awaited<ReturnType<typeof getDictionary>
                     ${open ? 'right-2 opacity-100' : '-right-4/5 opacity-0'}
                     md:right-0 md:opacity-100 md:bg-black/20 
                     fixed z-30 w-4/5 md:w-full flex flex-col md:flex-row justify-start pt-20 md:pt-0 md:justify-around items-center h-screen md:h-20 overflow-hidden text-white`}>
-                <Link onClick={handleMenu} href='#home'>
+                <Link onClick={handleMenu} href='#home' className='cursor-pointer'>
                     <Image src='/logo.svg' alt='Logo' width={140} height={60} className='hidden md:block'></Image>
                 </Link>
                 <nav className='flex flex-col text-[18px] font-light  items-center md:items-start md:flex-row gap-4.5'>
-                    <Link onClick={handleMenu} href='#home' className='hover:text-gray-400 active:underline'>
+                    <Link onClick={handleMenu} href='#home' className='hover:text-gray-400 active:underline cursor-pointer'>
                         {t.home}
                     </Link>
-                    <Link onClick={handleMenu} href='#about' className='hover:text-gray-400 active:underline'>
+                    <Link onClick={handleMenu} href='#about' className='hover:text-gray-400 active:underline cursor-pointer'>
                         {t.about}
                     </Link>
-                    <Link onClick={handleMenu} href='#projects' className='hover:text-gray-400 active:underline'>
+                    <Link onClick={handleMenu} href='#projects' className='hover:text-gray-400 active:underline cursor-pointer'>
                         {t.projects}
                     </Link>
-                    <Link onClick={handleMenu} href='#services' className='hover:text-gray-400 active:underline'>
+                    <Link onClick={handleMenu} href='#services' className='hover:text-gray-400 active:underline cursor-pointer'>
                         {t.services}
                     </Link>
-                    <Link onClick={handleMenu} href='#team' className='hover:text-gray-400 active:underline'>
+                    <Link onClick={handleMenu} href='#team' className='hover:text-gray-400 active:underline cursor-pointer'>
                         {t.team}
                     </Link>
                 </nav>
                 <ul className='absolute sm:flex md:hidden flex-col gap-2 bottom-0 left-0 p-5'>
-                    <li>
+                    <li className='cursor-pointer'>
                         <Phone size={20} className='inline-block  mr-2' />
                         +998(71) 200-11-51
                     </li>
-                    <li>
+                    <li className='cursor-pointer'>
                         <Phone size={20} className='inline-block mr-2' />
                         +998(62) 227-76-76
                     </li>
@@ -104,10 +104,10 @@ export default function Header({t}: {t: Awaited<ReturnType<typeof getDictionary>
                     <div className='md:flex items-center hidden'>
                         <LocaleSwitcher />
                     </div>
-                    <div onClick={handleMenu}>
+                    <div onClick={handleMenu} className='cursor-pointer'>
                         <Link
                             href='#contacts'
-                            className='md:flex items-center gap-2 cursor-default hover:bg-black/60 transition-colors duration-75 text-[16px] hidden py-1.5 px-2.5 rounded-sm bg-mbosColor'>
+                            className='md:flex items-center gap-2 hover:bg-black/60 transition-colors duration-75 text-[16px] hidden py-1.5 px-2.5 rounded-sm bg-mbosColor cursor-pointer'>
                             {t.contact}
                             <Phone size={17} />
                         </Link>

@@ -4,7 +4,6 @@ import { getDictionary } from '@/get-dictionary';
 import { SparklesCore } from './ui/sparkles';
 import Image from 'next/image';
 import teamRoles from '@/data/team-roles.json';
-import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 function TeamImageDialog({
@@ -64,25 +63,26 @@ export default function Team({
     lang?: string;
 }) {
     const teamMembers = [
-        { name: 'Matyaqubov Akrom', role: 'technician', image: '/texnik.jpg' },
-        { name: 'Kurbaniyazov Quvandik', role: 'seo', image: '/team1.jpg' },
+        { name: 'Matkarimov Kamron', role: 'backend_developer', image: '/team2kamron.jpg' },
+        { name: 'Saxobutdinov Dilshod', role: 'b2g_manager', image: '/team1dilshod.jpg' },
+
         { name: 'Yusupov Mansur', role: 'manager', image: '/team1boss.png' },
-        { name: 'Ochilov Jaxongirmirzo', role: 'frontend_developer', image: '/team1frme.jpg' },
-        { name: 'Madrimov Xudoshukur', role: 'team_lead', image: '/team1fr.jpg' },
-        { name: 'Xaitboev Jamoladdin', role: 'ux_ui_designer', image: '/team1designer.jpg' },
-
+        { name: 'Kurbaniyazov Quvandik', role: 'seo', image: '/team1.jpg' },
         { name: 'Allabergenov Dilmurod', role: 'project_manager', image: '/team1pm.jpg' },
-        // { name: 'Jalol', role: 'team_lead', image: '/team2fr.jpg' },
-        { name: 'Muxtor', role: 'backend_developer', image: '/team1muxtor.jpg' },
-        { name: 'Otanazarov Otabek', role: 'backend_developer', image: '/team2back.jpg' },
-        { name: 'Jumaniyazov Alibek', role: 'frontend_developer', image: '/team2fr.jpg' },
-        { name: 'Sultonov Zerifboy', role: 'backend_developer', image: '/team2bk.jpg' },
-        { name: 'Shohida', role: 'finance_head', image: '/team1moliya.jpg' },
-        { name: 'Dilshod', role: 'b2g_manager', image: '/team1dilshod.jpg' },
-        { name: 'Azizbek', role: 'b2b_manager', image: '/team1aziz.jpg' },
-        { name: 'Kamron', role: 'backend_developer', image: '/team2kamron.jpg' },
-        { name: "Og'obek", role: 'b2c_manager', image: '/team1ogabek.jpg' },
+        { name: 'Radjabboyeva Shohida', role: 'finance_head', image: '/team1moliya.jpg' },
+        { name: 'Madrimov Xudoshukur', role: 'team_lead', image: '/team1fr.jpg' },
+        { name: 'Saparboyev Muxtor', role: 'backend_developer', image: '/team1muxtor.jpg' },
+        { name: 'Ochilov Jaxongirmirzo', role: 'frontend_developer', image: '/team1frme.jpg' },
+        { name: 'Xaitboev Jamoladdin', role: 'ux_ui_designer', image: '/team1designer.jpg' },
+        { name: 'Matyaqubov Akrom', role: 'technician', image: '/texnik.jpg' },
 
+        // { name: 'Jalol', role: 'team_lead', image: '/team2fr.jpg' },
+        { name: 'Otanazarov Otabek', role: 'backend_developer', image: '/team2back.jpg' },
+        { name: 'Sultonov Zerifboy', role: 'backend_developer', image: '/team2bk.jpg' },
+
+        { name: 'Jumaniyazov Alibek', role: 'frontend_developer', image: '/team2fr.jpg' },
+        { name: 'Abudllayev Azizbek', role: 'b2b_manager', image: '/team1aziz.jpg' },
+        { name: "Matqurbanov Og'abek", role: 'b2c_manager', image: '/team1ogabek.jpg' },
     ];
 
     // Get translated role
@@ -105,7 +105,7 @@ export default function Team({
         setDialogOpen(true);
     }
 
-    // Custom InfiniteMovingCards2 with clickable images
+    // Responsive InfiniteMovingCardsWithDialog
     function InfiniteMovingCardsWithDialog({
         items,
         speed = "normal",
@@ -116,6 +116,22 @@ export default function Team({
         speed?: "fast" | "normal" | "slow";
         showControls?: boolean;
     }) {
+        // Responsive: use window width to determine layout
+        const [windowWidth, setWindowWidth] = React.useState<number | undefined>(undefined);
+
+        React.useEffect(() => {
+            function handleResize() {
+                setWindowWidth(window.innerWidth);
+            }
+            handleResize();
+            window.addEventListener('resize', handleResize);
+            return () => window.removeEventListener('resize', handleResize);
+        }, []);
+
+        // If small screen, show one image at a time, full width, with left/right controls
+        const isMobile = typeof windowWidth === 'number' && windowWidth < 768;
+
+        // Infinite scroll logic (unchanged for md+ screens)
         const scrollerRef = React.useRef<HTMLDivElement>(null);
         const [isManualControl, setIsManualControl] = useState(false);
         const [currentPosition, setCurrentPosition] = useState(0);
@@ -135,6 +151,7 @@ export default function Team({
 
         // Auto-scroll logic
         React.useEffect(() => {
+            if (isMobile) return; // Don't run infinite scroll on mobile
             if (!isManualControl && !isHovered) {
                 intervalRef.current = setInterval(() => {
                     setCurrentPosition(prev => {
@@ -154,7 +171,7 @@ export default function Team({
                     clearInterval(intervalRef.current);
                 }
             };
-        }, [isManualControl, isHovered, totalWidth, getSpeed]);
+        }, [isManualControl, isHovered, totalWidth, getSpeed, isMobile]);
 
         const scrollLeft = () => {
             setIsManualControl(true);
@@ -184,6 +201,78 @@ export default function Team({
             }, 3000);
         };
 
+        // Mobile: show one image at a time, full width, with left/right controls
+        const [mobileIndex, setMobileIndex] = React.useState(0);
+
+        React.useEffect(() => {
+            if (!isMobile) setMobileIndex(0);
+        }, [isMobile]);
+
+        const handleMobilePrev = () => {
+            setMobileIndex(prev => (prev - 1 + items.length) % items.length);
+        };
+        const handleMobileNext = () => {
+            setMobileIndex(prev => (prev + 1) % items.length);
+        };
+
+        if (isMobile) {
+            const item = items[mobileIndex];
+            return (
+                <div className="relative w-full flex flex-col items-center py-4">
+                    <div className="flex items-center w-full">
+                        <button
+                            onClick={handleMobilePrev}
+                            className="flex-shrink-0 w-10 h-10 rounded-full bg-black/80 hover:bg-black/95 flex items-center justify-center transition-all duration-300 backdrop-blur-sm cursor-pointer shadow-lg border border-white/30 mx-2"
+                            aria-label="Previous"
+                        >
+                            <ChevronLeft size={24} style={{ color: '#ffffff', stroke: '#ffffff', strokeWidth: 3 }} />
+                        </button>
+                        <div
+                            className="flex-1 flex flex-col items-center cursor-pointer group"
+                            onClick={() => handleImageClick(item)}
+                            tabIndex={0}
+                            onKeyDown={e => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    handleImageClick(item);
+                                }
+                            }}
+                            aria-label={`Open image of ${item.name}`}
+                        >
+                            <div className="w-full flex justify-center">
+                                <Image
+                                    src={item.image}
+                                    alt={item.name}
+                                    width={500}
+                                    height={650}
+                                    // Make image taller on sm screens
+                                    className="rounded-2xl w-full max-w-xs sm:max-w-sm md:max-w-md h-[75vw] max-h-[500px] object-cover group-hover:scale-105 transition-transform"
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <h3 className="mt-2 text-lg font-semibold text-white text-center">{item.name}</h3>
+                            <p className="text-gray-300 text-center">{getTranslatedRole(item.role)}</p>
+                        </div>
+                        <button
+                            onClick={handleMobileNext}
+                            className="flex-shrink-0 w-10 h-10 rounded-full bg-black/80 hover:bg-black/95 flex items-center justify-center transition-all duration-300 backdrop-blur-sm cursor-pointer shadow-lg border border-white/30 mx-2"
+                            aria-label="Next"
+                        >
+                            <ChevronRight size={24} style={{ color: '#ffffff', stroke: '#ffffff', strokeWidth: 3 }} />
+                        </button>
+                    </div>
+                    <div className="flex justify-center mt-2 gap-1">
+                        {items.map((_, idx) => (
+                            <span
+                                key={idx}
+                                className={`inline-block w-2 h-2 rounded-full ${idx === mobileIndex ? 'bg-white' : 'bg-gray-500/50'}`}
+                            />
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        // Desktop/tablet: infinite scroll
         return (
             <div
                 className="relative max-w-8xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]"
@@ -192,19 +281,19 @@ export default function Team({
                     <>
                         <button
                             onClick={scrollLeft}
-                            className="absolute left-20 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-black/80 hover:bg-black/95 hover:scale-110 flex items-center justify-center transition-all duration-300 backdrop-blur-sm cursor-pointer shadow-lg border border-white/30"
+                            className="absolute left-4 md:left-20 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-14 md:h-14 rounded-full bg-black/80 hover:bg-black/95 hover:scale-110 flex items-center justify-center transition-all duration-300 backdrop-blur-sm cursor-pointer shadow-lg border border-white/30"
                             aria-label="Scroll left"
                             style={{ color: '#ffffff' }}
                         >
-                            <ChevronLeft size={28} style={{ color: '#ffffff', stroke: '#ffffff', strokeWidth: 3 }} />
+                            <ChevronLeft size={24} className="md:size-7" style={{ color: '#ffffff', stroke: '#ffffff', strokeWidth: 3 }} />
                         </button>
                         <button
                             onClick={scrollRight}
-                            className="absolute right-20 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-black/80 hover:bg-black/95 hover:scale-110 flex items-center justify-center transition-all duration-300 backdrop-blur-sm cursor-pointer shadow-lg border border-white/30"
+                            className="absolute right-4 md:right-20 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-14 md:h-14 rounded-full bg-black/80 hover:bg-black/95 hover:scale-110 flex items-center justify-center transition-all duration-300 backdrop-blur-sm cursor-pointer shadow-lg border border-white/30"
                             aria-label="Scroll right"
                             style={{ color: '#ffffff' }}
                         >
-                            <ChevronRight size={28} style={{ color: '#ffffff', stroke: '#ffffff', strokeWidth: 3 }} />
+                            <ChevronRight size={24} className="md:size-7" style={{ color: '#ffffff', stroke: '#ffffff', strokeWidth: 3 }} />
                         </button>
                     </>
                 )}
@@ -270,7 +359,7 @@ export default function Team({
                     <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
                 </div>
             </div>
-            <div className="w-screen overflow-clip -my-4">
+            <div className="w-full sm:w-screen overflow-clip -my-4">
                 <InfiniteMovingCardsWithDialog items={teamMembers} speed="slow" showControls={true} />
             </div>
             <TeamImageDialog
