@@ -1,10 +1,11 @@
-import { Globe, Store, Atom, Smartphone, PenTool } from 'lucide-react'
+import { Globe, Store, Atom, Smartphone, PenTool, MapPin, ShieldCheck } from 'lucide-react'
 import React from 'react'
 import { Button as MovingButton } from "@/components/ui/moving-border"
 import Image from 'next/image'
 import { SparklesCore } from './ui/sparkles'
 import { getDictionary } from '@/get-dictionary'
 
+// Make ServiceCard taller and a bit wider for long descriptions
 const ServiceCard = ({ icon, title, description }: { 
   icon: React.ReactNode, 
   title: string, 
@@ -12,18 +13,18 @@ const ServiceCard = ({ icon, title, description }: {
 }) => (
   <MovingButton 
     duration={4000} 
-    containerClassName='md:w-72 w-full h-auto md:h-64 p-px m-1' 
-    className='border border-gray-400 flex flex-col items-start p-4 justify-start gap-4 bg-black'
+    containerClassName='md:w-80 w-full h-auto md:h-80 p-px m-1' // wider and taller
+    className='border border-gray-400 flex flex-col items-start p-6 justify-start gap-4 bg-black min-h-[320px] md:min-h-[320px]' // more padding, min height
   >
    <Image
-                        src='/backgroundFooter.png'
-                        alt='background'
-                        width={100}
-                        height={200}
-                        className='absolute w-full h-full bg-black object-cover blur-2xl -z-10'
-                    />
+      src='/backgroundFooter.png'
+      alt='background'
+      width={100}
+      height={200}
+      className='absolute w-full h-full bg-black object-cover blur-2xl -z-10'
+    />
     <h3 className='text-center mb-2 text-2xl font-semibold text-mbosColor2'>{icon} {title}</h3>
-    <p className='text-[16px]/[24px] font-light px-2'>{description}</p>
+    <p className='text-[16px]/[24px] font-light px-2 break-words'>{description}</p>
   </MovingButton>
 );
 
@@ -58,6 +59,18 @@ export default function Services({ t }: { t: Awaited<ReturnType<typeof getDictio
       icon: <PenTool className='-rotate-90 inline-block text-white' size={25}/>,
       title: t.UXUI,
       description: t.aboutUXUI
+    },
+    // GPS Tracking Card
+    {
+      icon: <MapPin className='text-white inline-block' size={25} />,
+      title: t.GPS,
+      description: t.aboutGPS
+    },
+    // Access Control Card
+    {
+      icon: <ShieldCheck className='text-white inline-block' size={25} />,
+      title: t.accessControl,
+      description: t.aboutAccessControl
     }
   ];
 

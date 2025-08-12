@@ -80,8 +80,10 @@ export default function About({ t }: { t: Awaited<ReturnType<typeof getDictionar
                             <p className='text-base xl:text-lg font-bold text-start px-6 xl:px-10 w-full pb-2 xl:pb-4'>{t.aboutp3}</p>
                         </div>
                         <div className='border rounded-bl-3xl md:rounded-bl-none border-gray-100/50 flex flex-col justify-center'>
-                            <p className='font-bold text-4xl xl:text-6xl my-4 xl:my-8 text-start px-6 xl:px-10 w-full'>10+</p>
-                            <p className='text-base xl:text-lg font-bold text-start px-6 xl:px-10 w-full pb-2 xl:pb-4'>{t.year}</p>
+                            <p className='font-bold text-4xl xl:text-6xl my-4 xl:my-8 text-start px-6 xl:px-10 w-full'>
+                                10 <span className="align-baseline text-2xl xl:text-4xl">{t.year}</span> +
+                            </p>
+                            <p className='text-base xl:text-lg font-bold text-start px-6 xl:px-10 w-full pb-2 xl:pb-4'>{t.experience}</p>
                         </div>
                         <div className='rounded-br-3xl border border-gray-100/50 flex flex-col justify-center'>
                             <p className='font-bold text-4xl xl:text-6xl my-4 xl:my-8 text-start pl-6 xl:pl-10 w-full'>20+</p>
