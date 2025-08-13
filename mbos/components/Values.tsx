@@ -2,12 +2,12 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import { TextHoverEffect } from '@/components/ui/text-hover-effect'
 import { SparklesCore } from '@/components/ui/sparkles'
 import { getDictionary } from '@/get-dictionary'
 
 const ITEM_HEIGHT = 64 // px, for text size
-const ANIMATION_DURATION = 1.2 // seconds, a bit faster for smoothness
+const ANIMATION_DURATION = 1.8 // seconds, a bit slower for smoother, more relaxed animation
+const SLIDE_PAUSE = 1800 // ms, pause between slides
 
 // Helper to detect if language is English or Uzbek
 function isCompanyFirst(t: any) {
@@ -37,7 +37,7 @@ export default function Values({
 
     intervalRef.current = setInterval(() => {
       setCurrentIdx((prev) => (prev + 1) % words.length)
-    }, ANIMATION_DURATION * 1000 + 1200) // 1.2s pause between slides
+    }, ANIMATION_DURATION * 1000 + SLIDE_PAUSE)
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current)
@@ -87,7 +87,6 @@ export default function Values({
             </>
           )}
         </div>
-        {/* SparklesCore under the company/values text */}
         <div className="w-full md:w-[40rem] h-20 relative -mt-6">
           <div className="absolute inset-x-18 md:inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
           <div className="absolute inset-x-18 md:inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
@@ -116,7 +115,7 @@ export default function Values({
             className="w-full flex items-center justify-center absolute"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0, transition: { duration: ANIMATION_DURATION, ease: [0.4, 0.0, 0.2, 1] } }}
-            exit={{ opacity: 0, y: -40, transition: { duration: ANIMATION_DURATION * 0.7, ease: [0.4, 0.0, 0.2, 1] } }}
+            exit={{ opacity: 0, y: -40, transition: { duration: ANIMATION_DURATION * 0.8, ease: [0.4, 0.0, 0.2, 1] } }}
             style={{
               height: `${ITEM_HEIGHT}px`,
               minHeight: `${ITEM_HEIGHT}px`,
@@ -139,6 +138,28 @@ export default function Values({
             </span>
           </motion.div>
         </AnimatePresence>
+        {/* Carousel dots */}
+        <div className="absolute bottom-2 left-0 right-0 flex justify-center items-center z-20">
+          {words.map((_, idx) => (
+            <button
+              key={idx}
+              aria-label={`Go to value ${idx + 1}`}
+              onClick={() => setCurrentIdx(idx)}
+              className={`mx-1 w-2.5 h-2.5 rounded-full transition-all duration-300 border border-white/60
+                ${currentIdx === idx
+                  ? 'bg-white shadow-lg scale-110'
+                  : 'bg-white/30 hover:bg-white/60 scale-100'
+                }`}
+              style={{
+                outline: 'none',
+                borderWidth: currentIdx === idx ? 2 : 1,
+                borderColor: currentIdx === idx ? '#fff' : 'rgba(255,255,255,0.6)',
+                cursor: currentIdx === idx ? 'default' : 'pointer',
+              }}
+              tabIndex={0}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
