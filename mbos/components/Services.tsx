@@ -68,7 +68,7 @@ export default function Services({ t }: { t: Awaited<ReturnType<typeof getDictio
     },
     // Access Control Card
     {
-      icon: <ShieldCheck className='text-white inline-block' size={25} />,
+      icon: <ShieldCheck className='text-white inline-block' size={17} />,
       title: t.accessControl,
       description: t.aboutAccessControl
     }
