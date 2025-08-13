@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import { TextHoverEffect } from '@/components/ui/text-hover-effect'
+import { SparklesCore } from '@/components/ui/sparkles'
 import { getDictionary } from '@/get-dictionary'
 
 const ITEM_HEIGHT = 64 // px, for text size
@@ -68,22 +69,40 @@ export default function Values({
         transition: 'opacity 0.5s'
       }}
     >
-      <div className="h-[7rem] flex items-center justify-center space-x-4">
-        {companyFirst ? (
-          <>
-            <p className='md:text-5xl font-bold uppercase text-3xl gap-2'>{t.company}</p>
-            <h1 className="uppercase text-3xl md:text-5xl font-bold">
-              <span className="text-mbosLinear">{t.values}</span>
-            </h1>
-          </>
-        ) : (
-          <>
-            <h1 className="uppercase text-3xl md:text-5xl font-bold">
-              <span className="text-mbosLinear">{t.values}</span>
-            </h1>
-            <p className='md:text-5xl font-bold uppercase text-3xl gap-2'>{t.company}</p>
-          </>
-        )}
+      <div className="relative flex flex-col items-center justify-center">
+        <div className="h-[7rem] flex items-center justify-center space-x-4 z-10">
+          {companyFirst ? (
+            <>
+              <p className='md:text-5xl font-bold uppercase text-3xl gap-2'>{t.company}</p>
+              <h1 className="uppercase text-3xl md:text-5xl font-bold">
+                <span className="text-mbosLinear">{t.values}</span>
+              </h1>
+            </>
+          ) : (
+            <>
+              <h1 className="uppercase text-3xl md:text-5xl font-bold">
+                <span className="text-mbosLinear">{t.values}</span>
+              </h1>
+              <p className='md:text-5xl font-bold uppercase text-3xl gap-2'>{t.company}</p>
+            </>
+          )}
+        </div>
+        {/* SparklesCore under the company/values text */}
+        <div className="w-full md:w-[40rem] h-20 relative -mt-6">
+          <div className="absolute inset-x-18 md:inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
+          <div className="absolute inset-x-18 md:inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
+          <div className="absolute inset-x-18 md:inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
+          <div className="absolute inset-x-18 md:inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
+          <SparklesCore
+            background="transparent"
+            minSize={0.4}
+            maxSize={1}
+            particleDensity={1200}
+            className="w-full h-full"
+            particleColor="#FFFFFF"
+          />
+          <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+        </div>
       </div>
       <div
         className="relative w-full flex flex-col items-center justify-center min-h-[180px] overflow-hidden"

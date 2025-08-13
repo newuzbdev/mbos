@@ -38,13 +38,27 @@ export default function About({ t }: { t: Awaited<ReturnType<typeof getDictionar
                     {/* Desktop grid */}
                     <div className='hidden lg:grid grid-cols-4 grid-rows-4 gap-4 w-full h-full'>
                         {/* Main info block */}
-                        <div className='col-span-2 row-span-3 rounded-tl-3xl rounded-tr-none border border-gray-100/50 flex flex-col items-center justify-start gap-2 p-5 md:px-12 xl:px-20 h-full min-h-[420px] max-h-[600px]'>
+                        <div
+                            className='col-span-2 row-span-3 rounded-tl-3xl rounded-tr-none border border-gray-100/50 flex flex-col items-center justify-start gap-2 p-5 md:px-12 xl:px-20 h-full'
+                            style={{
+                                minHeight: '420px',
+                                maxHeight: '565px',
+                                height: '565px', // Match images block height
+                            }}
+                        >
                             <h2 className='font-bold text-[32px] md:text-5xl'>MBOS</h2>
                             <p className='font-semibold text-[18px]/[30px] text-center md:text-2xl/[32px]'>Multi Branch Online Service</p>
                             <p
-                                className='font-semibold text-[18px]/[30px] text-justify md:text-2xl/[32px] mb-6 md:mb-10 w-full max-w-full overflow-y-auto'
+                                className='font-semibold text-[18px]/[30px] text-justify md:text-2xl/[32px] mb-6 md:mb-10 w-full max-w-full'
                                 style={{
-                                    maxHeight: 'calc(100% - 120px)',
+                                    // Remove scroll, fit text, center vertically
+                                    flex: 1,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    height: '100%',
+                                    margin: 0,
+                                    overflow: 'hidden',
                                     wordBreak: 'break-word',
                                 }}
                             >
@@ -52,20 +66,27 @@ export default function About({ t }: { t: Awaited<ReturnType<typeof getDictionar
                             </p>
                         </div>
                         {/* Images */}
-                        <div className='col-span-2 row-span-3 flex flex-col gap-4 rounded-tr-3xl'>
-                            <div className='flex items-center gap-4 justify-center'>
-                                <div className='relative h-[180px] xl:h-[275px] w-full border border-gray-100/50'>
+                        <div
+                            className='col-span-2 row-span-3 flex flex-col gap-4 rounded-tr-3xl'
+                            style={{
+                                minHeight: '420px',
+                                maxHeight: '565px',
+                                height: '565px', // Match about text block height
+                            }}
+                        >
+                            <div className='flex items-center gap-4 justify-center h-1/2'>
+                                <div className='relative h-[130px] xl:h-[270px] w-full border border-gray-100/50'>
                                     <Image src='/room1.jpg' alt='building' fill className='object-cover' />
                                 </div>
-                                <div className='relative h-[180px] xl:h-[275px] w-full border border-gray-100/50'>
+                                <div className='relative h-[130px] xl:h-[270px] w-full border border-gray-100/50'>
                                     <Image src='/room2.jpg' alt='building' fill className='object-cover' />
                                 </div>
                             </div>
-                            <div className='flex items-center gap-4 justify-center'>
-                                <div className='relative h-[180px] xl:h-[275px] w-full border border-gray-100/50'>
+                            <div className='flex items-center gap-4 justify-center h-1/2'>
+                                <div className='relative h-[130px] xl:h-[270px] w-full border border-gray-100/50'>
                                     <Image src='/room3.jpg' alt='building' fill className='object-cover' />
                                 </div>
-                                <div className='relative h-[180px] xl:h-[275px] w-full border border-gray-100/50'>
+                                <div className='relative h-[130px] xl:h-[270px] w-full border border-gray-100/50'>
                                     <Image src='/room4.jpg' alt='building' fill className='object-cover' />
                                 </div>
                             </div>
@@ -93,24 +114,52 @@ export default function About({ t }: { t: Awaited<ReturnType<typeof getDictionar
                     {/* Mobile/tablet: stack aboutp and images vertically, minimal gap */}
                     <div className='lg:hidden flex flex-col gap-2 w-full max-w-2xl mx-auto'>
                         {/* Main info block */}
-                        <div className='rounded-t-3xl border border-gray-100/50 flex flex-col items-center justify-start gap-1 p-4'>
+                        <div
+                            className='rounded-t-3xl border border-gray-100/50 flex flex-col items-center justify-start gap-1 p-4'
+                            style={{
+                                minHeight: '220px',
+                                maxHeight: '260px',
+                                height: '260px',
+                            }}
+                        >
                             <h2 className='font-bold text-[24px] sm:text-[28px]'>MBOS</h2>
                             <p className='font-semibold text-[15px]/[24px] sm:text-[16px]/[26px] text-center'>Multi Branch Online Service</p>
-                            <p className='font-semibold text-[15px]/[24px] sm:text-[16px]/[26px] text-justify mb-2 w-full break-words'>{t.aboutp}</p>
+                            <p
+                                className='font-semibold text-[15px]/[24px] sm:text-[16px]/[26px] text-justify mb-2 w-full break-words'
+                                style={{
+                                    flex: 1,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    height: '100%',
+                                    margin: 0,
+                                    overflow: 'hidden',
+                                    wordBreak: 'break-word',
+                                }}
+                            >
+                                {t.aboutp}
+                            </p>
                         </div>
                         {/* Images: 1 col, minimal gap */}
-                        <div className='flex flex-col gap-2 mt-0'>
-                            <div className='flex flex-col gap-2'>
-                                <div className='relative h-[100px] sm:h-[120px] w-full border border-gray-100/50'>
+                        <div
+                            className='flex flex-col gap-2 mt-0'
+                            style={{
+                                minHeight: '220px',
+                                maxHeight: '260px',
+                                height: '260px',
+                            }}
+                        >
+                            <div className='flex flex-col gap-2 h-full'>
+                                <div className='relative flex-1 w-full border border-gray-100/50 min-h-[50px]'>
                                     <Image src='/room1.jpg' alt='building' fill className='object-cover' />
                                 </div>
-                                <div className='relative h-[100px] sm:h-[120px] w-full border border-gray-100/50'>
+                                <div className='relative flex-1 w-full border border-gray-100/50 min-h-[50px]'>
                                     <Image src='/room2.jpg' alt='building' fill className='object-cover' />
                                 </div>
-                                <div className='relative h-[100px] sm:h-[120px] w-full border border-gray-100/50'>
+                                <div className='relative flex-1 w-full border border-gray-100/50 min-h-[50px]'>
                                     <Image src='/room3.jpg' alt='building' fill className='object-cover' />
                                 </div>
-                                <div className='relative h-[100px] sm:h-[120px] w-full border border-gray-100/50'>
+                                <div className='relative flex-1 w-full border border-gray-100/50 min-h-[50px]'>
                                     <Image src='/room4.jpg' alt='building' fill className='object-cover' />
                                 </div>
                             </div>

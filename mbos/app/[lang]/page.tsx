@@ -21,6 +21,7 @@ export default async function page(props: {
       <Services t={t} />
       <Products t={t} />
       <Team t={t} lang={lang} />
+      
       {/* <Technologies t={t} /> */}
       <Contacts t={t} />
       <Values t={t} />

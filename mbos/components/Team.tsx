@@ -63,7 +63,7 @@ export default function Team({
     lang?: string;
 }) {
     const teamMembers = [
-        { name: 'Matkarimov Kamron', role: 'backend_developer', image: '/team2kamron.jpg' },
+        { name: 'Matkarimov Kamron', role: 'backend_developer', image: '/team1kamron.jpg' },
         { name: 'Saxobutdinov Dilshod', role: 'b2g_manager', image: '/team1dilshod.jpg' },
 
         { name: 'Yusupov Mansur', role: 'manager', image: '/team1boss.png' },
