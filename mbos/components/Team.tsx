@@ -339,6 +339,7 @@ export default function Team({
     return (
         <section id="team" className="flex flex-col items-center gap-10">
             <div className="mbos-button">{t.team}</div>
+
             <h1 className="uppercase text-3xl md:text-5xl font-bold">
                 <span className="text-mbosLinear">{t.team2}</span>
             </h1>
