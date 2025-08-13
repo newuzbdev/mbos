@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { SparklesCore } from './ui/sparkles'
 import { getDictionary } from '@/get-dictionary'
 
-// Make ServiceCard taller and a bit wider for long descriptions
+// ServiceCard: consistent text sizing, responsive min-h, let grid control width
 const ServiceCard = ({ icon, title, description }: { 
   icon: React.ReactNode, 
   title: string, 
@@ -13,18 +13,18 @@ const ServiceCard = ({ icon, title, description }: {
 }) => (
   <MovingButton 
     duration={4000} 
-    containerClassName='md:w-80 w-full h-auto md:h-80 p-px m-1' // wider and taller
-    className='border border-gray-400 flex flex-col items-start p-6 justify-start gap-4 bg-black min-h-[320px] md:min-h-[320px]' // more padding, min height
+    containerClassName='w-full h-auto p-px m-1'
+    className='border border-gray-400 flex flex-col items-start p-6 justify-start gap-4 bg-black min-h-[18rem] md:min-h-[18rem] text-base md:text-base'
   >
-   <Image
+    <Image
       src='/backgroundFooter.png'
       alt='background'
       width={100}
       height={200}
       className='absolute w-full h-full bg-black object-cover blur-2xl -z-10'
     />
-    <h3 className='text-center mb-2 text-2xl font-semibold text-mbosColor2'>{icon} {title}</h3>
-    <p className='text-[16px]/[24px] font-light px-2 break-words'>{description}</p>
+    <h3 className='text-center mb-2 text-2xl font-semibold text-mbosColor2 leading-tight'>{icon} {title}</h3>
+    <p className='font-light px-2 break-words leading-relaxed'>{description}</p>
   </MovingButton>
 );
 
@@ -77,7 +77,13 @@ export default function Services({ t }: { t: Awaited<ReturnType<typeof getDictio
   return (
     <section id='services' className='flex flex-col items-center gap-10 pt-5 md:pt-20'>
       <div className='mbos-button'>{t.services}</div>
-      <h1 className='text-2xl md:text-5xl font-bold text-center md:leading-18 uppercase leading-10'>
+      <h1
+        className='text-2xl md:text-5xl font-bold text-center md:leading-18 uppercase leading-10'
+        style={{
+          fontSize: 'clamp(2rem, 4vw, 3rem)',
+          lineHeight: '1.2'
+        }}
+      >
         {t.our} <span className='text-mbosLinear'>{t.service}</span>
       </h1>
       <div className='w-screen flex flex-col items-center overflow-x-clip relative'>
@@ -90,7 +96,7 @@ export default function Services({ t }: { t: Awaited<ReturnType<typeof getDictio
           <div className='absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]'></div>
         </div>
       </div>
-      <div className='flex flex-wrap flex-row items-center justify-center gap-4 w-[calc(100vw-5rem)]'>
+      <div className="w-[calc(100vw-5rem)] mx-2 md:mx-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch justify-items-center">
         {services.map((service, index) => (
           <ServiceCard 
             key={index}
