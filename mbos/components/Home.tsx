@@ -75,6 +75,10 @@ export default function Home({
       height: 100
     }
   ]
+
+  // Detect language by homeh1span value
+  const isEnglish = t.homeh1span === 'Convenience'
+
   return (
     <AuroraBackground
       className='flex flex-col items-center bg-transparent text-white justify-start pt-40 h-auto gap-8'
@@ -92,9 +96,22 @@ export default function Home({
         className='relative flex flex-col gap-4 items-center justify-center px-4 md:mt-10'
       >
         <h1 className=' text-3xl/[32px]  md:text-[56px]/[64px] font-bold text-center'>
-          {t.homeh11} <span className='text-mbosLinear'>{t.homeh1span}</span>{' '}
-          <br />
-          {t.homeh12}
+          {isEnglish ? (
+            <>
+              {t.homeh11}
+              <span>{t.homeh1span}</span>
+              <br />
+              {'for Poeple Through '}
+              <span className='text-mbosLinear'>Digitization</span>
+            </>
+          ) : (
+            <>
+              {t.homeh11}
+              <span className='text-mbosLinear'>{t.homeh1span}</span>
+              <br />
+              {t.homeh12}
+            </>
+          )}
         </h1>
       </motion.div>
       <p className='text-center text-[18px]/[28px] w-screen md:w-1/2 text-wrap px-2'>

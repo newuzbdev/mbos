@@ -2,13 +2,32 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {Menu, Phone, X} from 'lucide-react';
-import {getDictionary} from '@/get-dictionary';
+import { Menu, Phone, X } from 'lucide-react';
+import { getDictionary } from '@/get-dictionary';
 import LocaleSwitcher from './LocaleSwitcher';
 
-export default function Header({t}: {t: Awaited<ReturnType<typeof getDictionary>>}) {
+export default function Header({ t }: { t: Awaited<ReturnType<typeof getDictionary>> }) {
     const [open, setOpen] = React.useState<boolean>(false);
     const navigationRef = React.useRef<HTMLDivElement>(null);
+
+    // Helper to lock/unlock scroll
+    React.useEffect(() => {
+        if (open) {
+            // Lock scroll on open
+            document.body.style.overflow = 'hidden';
+            document.body.style.touchAction = 'none';
+        } else {
+            // Restore scroll on close
+            document.body.style.overflow = '';
+            document.body.style.touchAction = '';
+        }
+        return () => {
+            // Clean up in case component unmounts while menu is open
+            document.body.style.overflow = '';
+            document.body.style.touchAction = '';
+        };
+    }, [open]);
+
     const handleMenu = () => {
         if (open) {
             navigationRef.current?.classList.remove('in-menu');
@@ -19,6 +38,7 @@ export default function Header({t}: {t: Awaited<ReturnType<typeof getDictionary>
         }
         setOpen(!open);
     };
+
     React.useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (navigationRef.current && !navigationRef.current.contains(event.target as Node) && open) {
@@ -31,15 +51,6 @@ export default function Header({t}: {t: Awaited<ReturnType<typeof getDictionary>
         };
     }, [open]);
 
-    React.useEffect(() => {
-        if (open) {
-            setTimeout(() => {
-                document.body.style.overflowX = 'hidden';
-            }, 500);
-        } else {
-            document.body.style.overflow = '';
-        }
-    }, [open]);
     React.useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth >= 768) {

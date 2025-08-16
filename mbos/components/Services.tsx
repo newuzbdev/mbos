@@ -6,10 +6,12 @@ import { SparklesCore } from './ui/sparkles'
 import { getDictionary } from '@/get-dictionary'
 
 // ServiceCard: consistent text sizing, responsive min-h, let grid control width
-const ServiceCard = ({ icon, title, description }: { 
+const ServiceCard = ({ icon, title, description, inlineTitle = false, smallText = false }: { 
   icon: React.ReactNode, 
   title: string, 
-  description: string 
+  description: string,
+  inlineTitle?: boolean,
+  smallText?: boolean
 }) => (
   <MovingButton 
     duration={4000} 
@@ -23,8 +25,15 @@ const ServiceCard = ({ icon, title, description }: {
       height={200}
       className='absolute w-full h-full bg-black object-cover blur-2xl -z-10'
     />
-    <h3 className='text-center mb-2 text-2xl font-semibold text-mbosColor2 leading-tight'>{icon} {title}</h3>
-    <p className='font-light px-2 break-words leading-relaxed'>{description}</p>
+    {inlineTitle ? (
+      <div className="flex items-center gap-2 mb-2 w-full">
+        <span>{icon}</span>
+        <span className={`font-semibold text-mbosColor2 leading-tight ${smallText ? 'text-lg md:text-lg' : 'text-2xl'}`}>{title}</span>
+      </div>
+    ) : (
+      <h3 className='text-center mb-2 text-2xl font-semibold text-mbosColor2 leading-tight w-full flex items-center gap-2'>{icon} {title}</h3>
+    )}
+    <p className={`font-light px-2 break-words leading-relaxed ${smallText ? 'text-lg md:text-lg' : ''}`}>{description}</p>
   </MovingButton>
 );
 
@@ -66,14 +75,18 @@ export default function Services({ t }: { t: Awaited<ReturnType<typeof getDictio
       title: t.GPS,
       description: t.aboutGPS
     },
-    // Access Control Card
+    // Access Control Card (special: icon and text inline, smaller text)
     {
       icon: <ShieldCheck className='text-white inline-block' size={17} />,
       title: t.accessControl,
-      description: t.aboutAccessControl
+      description: t.aboutAccessControl,
+      inlineTitle: true,
+      smallText: true
     }
   ];
 
+  // Add horizontal padding on mobile to prevent cards from touching the screen edge
+  // Use px-4 (1rem) on mobile, px-0 on md+ for full width
   return (
     <section id='services' className='flex flex-col items-center gap-10 pt-5 md:pt-20'>
       <div className='mbos-button'>{t.services}</div>
@@ -96,13 +109,15 @@ export default function Services({ t }: { t: Awaited<ReturnType<typeof getDictio
           <div className='absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]'></div>
         </div>
       </div>
-      <div className="w-[calc(100vw-5rem)] mx-2 md:mx-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch justify-items-center">
+      <div className="w-full max-w-screen-xl px-4 md:px-0 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch justify-items-center">
         {services.map((service, index) => (
           <ServiceCard 
             key={index}
             icon={service.icon}
             title={service.title}
             description={service.description}
+            inlineTitle={service.inlineTitle}
+            smallText={service.smallText}
           />
         ))}
       </div>
