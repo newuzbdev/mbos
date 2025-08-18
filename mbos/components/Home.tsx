@@ -78,6 +78,7 @@ export default function Home({
 
   // Detect language by homeh1span value
   const isEnglish = t.homeh1span === 'Convenience'
+  const isRussian = t.homeh1span === 'Цифровизации'
 
   return (
     <AuroraBackground
@@ -103,6 +104,12 @@ export default function Home({
               <br />
               {'for Poeple Through '}
               <span className='text-mbosLinear'>Digitization</span>
+            </>
+          ) : isRussian ? (
+            <>
+              Мы создаём людям удобства  <br />
+              с помощью{' '}
+              <span className='text-mbosLinear'>Цифровизации</span>
             </>
           ) : (
             <>
