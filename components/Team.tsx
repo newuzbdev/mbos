@@ -75,6 +75,7 @@ export default function Team({
         { name: 'Ochilov Jaxongirmirzo', role: 'frontend_developer', image: '/team1frme.jpg' },
         { name: 'Xaitboev Jamoladdin', role: 'ux_ui_designer', image: '/team1designer.jpg' },
         { name: 'Matyaqubov Akrom', role: 'technician', image: '/texnik.jpg' },
+        { name: 'Bekchanov Nodirbek', role: 'technician', image: '/texnik2.jpg' },
 
         // { name: 'Jalol', role: 'team_lead', image: '/team2fr.jpg' },
         { name: 'Otanazarov Otabek', role: 'backend_developer', image: '/team2back.jpg' },
@@ -136,6 +137,7 @@ export default function Team({
         const [isManualControl, setIsManualControl] = useState(false);
         const [currentPosition, setCurrentPosition] = useState(0);
         const [isHovered, setIsHovered] = useState(false);
+        const [isWrapping, setIsWrapping] = useState(false);
         const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
         const getSpeed = () => {
@@ -156,8 +158,12 @@ export default function Team({
                 intervalRef.current = setInterval(() => {
                     setCurrentPosition(prev => {
                         const newPos = prev - 1; // Move left (negative direction)
-                        // Reset when we've moved a full cycle to maintain infinite scroll
-                        return newPos <= -totalWidth ? 0 : newPos;
+                        // Wrap when we've moved a full cycle to maintain infinite scroll
+                        // Since items are tripled, wrap seamlessly by adding totalWidth
+                        if (newPos < -totalWidth) {
+                            return newPos + totalWidth;
+                        }
+                        return newPos;
                     });
                 }, getSpeed() / (totalWidth)); // Smooth movement
             } else {
@@ -173,12 +179,33 @@ export default function Team({
             };
         }, [isManualControl, isHovered, totalWidth, getSpeed, isMobile]);
 
+
+        // Helper to normalize position to range [-totalWidth, 0)
+        const normalizePosition = (pos: number): number => {
+            if (pos >= 0) {
+                // If positive, wrap to negative equivalent
+                return pos - totalWidth;
+            } else if (pos < -totalWidth) {
+                // If too negative, calculate equivalent in visible range
+                const cycles = Math.floor(Math.abs(pos) / totalWidth);
+                return pos + (cycles * totalWidth);
+            }
+            return pos;
+        };
+
         const scrollLeft = () => {
             setIsManualControl(true);
             setCurrentPosition(prev => {
-                const newPos = prev + itemWidth;
-                // Wrap around for infinite scroll
-                return newPos >= totalWidth ? newPos - totalWidth : newPos;
+                // Normalize position to keep it in range [-totalWidth, 0) before scrolling
+                const normalizedPos = normalizePosition(prev);
+                const newPos = normalizedPos + itemWidth;
+                // Wrap around for infinite scroll - when going past 0, wrap to negative
+                if (newPos > 0) {
+                    setIsWrapping(true);
+                    setTimeout(() => setIsWrapping(false), 50);
+                    return newPos - totalWidth;
+                }
+                return newPos;
             });
 
             // Resume auto-scroll after delay
@@ -190,9 +217,18 @@ export default function Team({
         const scrollRight = () => {
             setIsManualControl(true);
             setCurrentPosition(prev => {
-                const newPos = prev - itemWidth;
-                // Wrap around for infinite scroll
-                return newPos < -totalWidth ? newPos + totalWidth : newPos;
+                // Normalize position to keep it in range [-totalWidth, 0) before scrolling
+                // This prevents accumulation of very negative values
+                const normalizedPos = normalizePosition(prev);
+                const newPos = normalizedPos - itemWidth;
+                // Wrap around for infinite scroll when going below -totalWidth
+                // Since items are tripled, we can wrap seamlessly by adding totalWidth
+                if (newPos < -totalWidth) {
+                    setIsWrapping(true);
+                    setTimeout(() => setIsWrapping(false), 50);
+                    return newPos + totalWidth;
+                }
+                return newPos;
             });
 
             // Resume auto-scroll after delay
@@ -304,7 +340,7 @@ export default function Team({
                     onMouseLeave={() => setIsHovered(false)}
                     style={{
                         transform: `translateX(${currentPosition}px)`,
-                        transition: isManualControl ? 'transform 0.5s ease-out' : 'transform 0.1s linear',
+                        transition: isWrapping ? 'none' : (isManualControl ? 'transform 0.5s ease-out' : 'transform 0.1s linear'),
                     } as React.CSSProperties}
                 >
                     {duplicatedItems.map((item, idx) => (

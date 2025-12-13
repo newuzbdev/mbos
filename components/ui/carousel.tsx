@@ -152,24 +152,80 @@ interface CarouselProps {
 }
 
 export default function Carousel({ slide }: CarouselProps) {
-  const [current, setCurrent] = useState(slide.length);
+  const [current, setCurrent] = useState(0);
   const [slides, setSlides] = useState<SlideData[]>([]);
-  useEffect(()=>{
-    setSlides([...slide, ...slide])
-  },[])
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const transitionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const originalLength = slide.length;
+  
+  useEffect(() => {
+    // Create 3 copies for seamless infinite loop
+    const tripledSlides = [...slide, ...slide, ...slide];
+    setSlides(tripledSlides);
+    // Start in the middle set
+    setCurrent(originalLength);
+  }, [slide, originalLength]);
+
   const handlePreviousClick = () => {
-    const previous = current - 1;
-    setCurrent(previous < 0 ? slides.length - 1 : previous);
+    setCurrent(prev => {
+      const middleSetStart = originalLength;
+      let newPos = prev - 1;
+      
+      // If we're going below middle set, wrap to equivalent position
+      if (newPos < middleSetStart) {
+        newPos = newPos + originalLength;
+        // Jump without transition - clear any existing timeout
+        if (transitionTimeoutRef.current) {
+          clearTimeout(transitionTimeoutRef.current);
+        }
+        setIsTransitioning(false);
+        transitionTimeoutRef.current = setTimeout(() => {
+          setIsTransitioning(true);
+          transitionTimeoutRef.current = null;
+        }, 50);
+      }
+      return newPos;
+    });
   };
 
   const handleNextClick = () => {
-    const next = current + 1;
-    setCurrent(next === slides.length ? 0 : next);
+    setCurrent(prev => {
+      const middleSetEnd = originalLength * 2;
+      let newPos = prev + 1;
+      
+      // If we're going beyond middle set, wrap to equivalent position
+      if (newPos >= middleSetEnd) {
+        newPos = newPos - originalLength;
+        // Jump without transition - clear any existing timeout
+        if (transitionTimeoutRef.current) {
+          clearTimeout(transitionTimeoutRef.current);
+        }
+        setIsTransitioning(false);
+        transitionTimeoutRef.current = setTimeout(() => {
+          setIsTransitioning(true);
+          transitionTimeoutRef.current = null;
+        }, 50);
+      }
+      return newPos;
+    });
   };
 
   const handleSlideClick = (index: number) => {
     if (current !== index) {
-      setCurrent(index);
+      // Map clicked index to middle set for consistency
+      const originalLength = slide.length;
+      let targetIndex = index;
+      
+      // If clicking on a slide in the first set, jump to middle set
+      if (index < originalLength) {
+        targetIndex = index + originalLength;
+      }
+      // If clicking on a slide in the last set, jump to middle set
+      else if (index >= originalLength * 2) {
+        targetIndex = index - originalLength;
+      }
+      
+      setCurrent(targetIndex);
     }
   };
 
@@ -181,9 +237,10 @@ export default function Carousel({ slide }: CarouselProps) {
       aria-labelledby={`carousel-heading-${id}`}
     >
       <ul
-        className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
+        className="absolute flex mx-[-4vmin]"
         style={{
           transform: `translateX(-${current * (100 / slides.length)}%)`,
+          transition: isTransitioning ? 'transform 1000ms ease-in-out' : 'none',
         }}
       >
         {slides.map((slide, index) => (

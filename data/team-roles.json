@@ -1,6 +1,6 @@
 {
   "en": {
-    "technician": "Technician",
+    "technician": "Technical Specialist",
     "seo": "CEO", 
     "manager": "Manager",
     "frontend_developer": "Frontend Developer",
@@ -14,7 +14,7 @@
     "b2c_manager": "B2C Manager"
   },
   "ru": {
-    "technician": "Техник",
+    "technician": "Технический специалист",
     "seo": "Исполнительный директор",
     "manager": "Руководитель", 
     "frontend_developer": "Frontend-разработчик",
@@ -28,7 +28,7 @@
     "b2c_manager": "B2C Менеджер"
   },
   "uz": {
-    "technician": "Texnik",
+    "technician": "Texnik Mutaxassis",
     "seo": "Ijrochi direktor",
     "manager": "Raxbar",
     "frontend_developer": "Frontend dasturchi", 
